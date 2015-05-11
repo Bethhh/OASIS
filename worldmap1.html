@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>D3 World Map</title>
+    <style>
+      path {
+        stroke: black;
+        stroke-width: 0.5px;
+        fill: white;
+      }
+      #map {
+        width:100%;
+        height:800px;
+      }
+    </style>
+    <script src="./d3/d3.min.js"></script>
+    <script src="./d3/topojson.v0.min.js"></script>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script type="text/javascript">
+
+      var w = window,
+          doc = document,
+          e = doc.documentElement,
+          n = doc.getElementById('map')[0],
+          width = w.innerWidth || e.clientWidth || n.clientWidth,
+          height = w.innerHeight|| e.clientHeight|| n.clientHeight;
+
+      var projection = d3.geo.mercator();
+
+      var svg = d3.select("#map").append("svg")
+              .attr("width", width)
+              .attr("height", height)
+      svg.append("rect")
+        .attr("width", "100%")
+        .attr("height", "100%")
+        .attr("fill", "black");
+              //.append("g");
+      var path = d3.geo.path()
+          .projection(projection);
+      var g = svg.append("g");
+
+      d3.json("./d3/world-110m.json", function(error, topology) {
+          g.selectAll("path")
+            .data(topojson.object(topology, topology.objects.countries)
+                .geometries)
+          .enter()
+            .append("path")
+            .attr("d", path)
+      });
+
+      function updateWindow(){
+          width = w.innerWidth || e.clientWidth || n.clientWidth;
+          height = w.innerHeight|| e.clientHeight|| n.clientHeight;
+          
+          svg.attr("width", width).attr("height", height);
+      }
+      window.onresize = updateWindow;
+
+      //var canvas = document.getElementById('map');
+      //alert(canvas.width);
+      //var width = canvas.width;
+      //var height = canvas.height;
+      //alert(width);
+
+      
+      
+      //var svg = d3.select("#map").append("svg")
+        //  .attr("width", width)
+          //.attr("height", height);
+      
+      
+ 
+    </script>
+  </body>
+</html>
