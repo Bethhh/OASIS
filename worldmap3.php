@@ -233,5 +233,8 @@ function get_xyz(d) {
 
 
 </script>
+<?php
+echo "My first PHP script!";
+?>
 </body>
 </html>
