@@ -58,6 +58,7 @@
     var country;
     var g;
     var defs;
+    var svg
 
     var path = d3.geo.path()
         .projection(projection);
@@ -72,7 +73,7 @@
     }
 
 
-    var svg = d3.select("body").append("svg")
+    svg = d3.select("body").append("svg")
         .call(d3.behavior.zoom()
                 .on("zoom", redraw))
         .attr("width", width)
@@ -101,7 +102,6 @@
 
 
       svg.append("g")
-          .on("click", country_clicked)
           .attr("id", "first_layer")
           .attr("clip-path", "url(#clip)")
         .selectAll("image")
@@ -144,7 +144,8 @@
     var i = 0;
     function quake() {
       var c = earthquakes[i];
-      svg.append("circle")
+      var h=svg.append("circle")
+          .attr("class", "dataPoint")
           .attr("cx", projection(c.geometry.coordinates)[0])
           .attr("cy", projection(c.geometry.coordinates)[1])
           .attr("r", 1)
@@ -153,56 +154,41 @@
           .style("stroke", "red")
           .style("stroke-opacity", 0.5)
         .transition()
-          .duration(2000)
+          .duration(4000)
           .ease(Math.sqrt)
-          .attr("r", c.properties.magnitude * 20)
+          .attr("r", c.properties.magnitude * 10)
           .style("fill-opacity", 1e-6)
           .style("stroke-opacity", 1e-6)
           .remove()
         setTimeout(quake, 200);
+
+      $(".dataPoint").on('click', function(evt){
+          console.log("PP");
+          evt.stopPropagation();
+          circle_clicked(evt);
+      });
+
       i++;
       if (earthquakes.length==i) i = 0;
     }
 
-function country_clicked(d) {
-  g.selectAll(["#states", "#cities"]).remove();
-  //defs.selectAll(["#states", "#cities"]).remove();
-  state = null;
-
-  if (country) {
-    g.selectAll("#" + country.id).style('display', null);
-    //defs.selectAll("#" + country.id).style('display', null);
-  }
-
-  if (d && country !== d) {
-    var xyz = get_xyz(d);
-    country = d;
-
-    /*if (d.id  == 'USA' || d.id == 'JPN') {
-      d3.json("/json/states_" + d.id.toLowerCase() + ".topo.json", function(error, us) {
-        g.append("g")
-          .attr("id", "states")
-          .selectAll("path")
-          .data(topojson.feature(us, us.objects.states).features)
-          .enter()
-          .append("path")
-          .attr("id", function(d) { return d.id; })
-          .attr("class", "active")
-          .attr("d", path)
-          .on("click", state_clicked);
-
-        zoom(xyz);
-        g.selectAll("#" + d.id).style('display', 'none');
-      });      
-    } else {*/
-      zoom(xyz);
-    //}
-  } else {
-    var xyz = [width / 2, height / 1.5, 1];
-    country = null;
-    zoom(xyz);
-  }
+function circle_clicked(evt){
+    $('.popup').remove();
+    console.log("hey");
+    console.log(evt);
+    currX = evt.clientX;
+    currY = evt.clientY;
+    svg.append("rect")
+        .attr("x", currX)
+        .attr("y", currY)
+        .attr("class", "popup")
+        .attr("width", "200")
+        .attr("height", "100")
+        .attr("fill", "#ffffff");
+  
 }
+
+
 
 function zoom(xyz) {
   g.transition()
