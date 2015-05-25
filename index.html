@@ -9,6 +9,13 @@
     <script src="http://libs.cartocdn.com/cartodb.js/v2/cartodb.js"></script>
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+        <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/scrolling-nav.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
     <style type="text/css">
  
     body{
@@ -53,8 +60,11 @@
  
 </head>
 
-<body>
-  <div id="map"></div>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+       <div id="map"></div>
+
+    
 <script>
 
     var first_layer = 'd3_world_borders';
@@ -65,25 +75,59 @@
         height = 600;
 
     var projection = d3.geo.mercator()       
-        .center([0, 40])              //The center of the map (more land is possible)
+        .center([-30, 50])              //The center of the map (more land is possible)
         .scale(160);                  //Initial zoom of the map
     var country;
     var defs;
 
-
+    
      
     function getOSM(lat, lng, level){
        console.log("lat="+ lat + " lng=" + lng);
 
-       var map = L.map('popup').setView([lat, lng], 13);
 
        var mapboxURL = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}';
-       L.tileLayer(mapboxURL, {
-          attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> , Imagery © <a href="http://mapbox.com">Mapbox</a>',
+       var ac = 'pk.eyJ1IjoiYmV0aHNoaSIsImEiOiJjOTg3MmVmMThjNDA3ZWNlZGFiMzQxYzVmMWE5MTA0YSJ9.m1VNax_7vNjkZVXuUY69Gw';
+       var mapattr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> , Imagery © <a href="http://mapbox.com">Mapbox</a>';
+
+       var mapid_bike = 'bethshi.c9cd002c';
+       var mapid_streets = 'bethshi.c9cd002c';
+
+       var bike = L.tileLayer(mapboxURL, {
+          attribution: mapattr,
           maxZoom: 18,
-          id: 'bethshi.c9cd002c',
-          accessToken: 'pk.eyJ1IjoiYmV0aHNoaSIsImEiOiJjOTg3MmVmMThjNDA3ZWNlZGFiMzQxYzVmMWE5MTA0YSJ9.m1VNax_7vNjkZVXuUY69Gw'
-       }).addTo(map);
+          id: mapid_bike,
+          accessToken: ac
+       });
+
+       var streets = L.tileLayer(mapboxURL, {
+          attribution: mapattr,
+          maxZoom: 18,
+          id: mapid_streets,
+          accessToken: ac
+       });
+
+       var data_point = L.marker([lat, lng]).bindPopup("Here");
+       var points = L.layerGroup([data_point]);
+
+       //var map = L.map('popup').setView([lat, lng], 13);
+       var map = L.map('popup',{
+          center: [lat, lng],
+          zoom:13,
+          layers: [bike, streets]
+       });
+
+       var baseMaps = {
+            "Bike": bike,
+            "Streets": streets
+       };
+
+       var overlayMaps = {
+            "Points": points
+       };
+       L.control.layers(baseMaps, overlayMaps).addTo(map);
+
+
     }
 
  
@@ -112,7 +156,7 @@
     svg.append("rect")
         .attr("width", "100%")
         .attr("height", "100%")
-        .attr("fill", "#3A81B7");
+        .attr("fill", "#000000");//"#3A81B7");
 
     d3.json("./d3/world-50m.json", function(error, topology) {
         var tiles = tile();
@@ -204,14 +248,6 @@
         currX = evt.clientX - pw/2;
         currY = evt.clientY - ph/2;
 
-        /*svg.append("rect")
-            .attr("x", currX)
-            .attr("y", currY)
-            .attr("class", "popup")
-            .attr("width", pw)
-            .attr("height", ph)
-            .attr("fill", "#ffffff");*/
-
         var div = document.createElement("div");
         div.setAttribute("id", "popup");
 
@@ -222,7 +258,7 @@
         document.body.appendChild(div);
         //console.log(div);
 
-        getOSM(evt.target.attributes.cx.value, evt.target.attributes.cy.value, 10);//level);
+        getOSM(evt.target.attributes.lat.value+180, evt.target.attributes.lng.value+180, 10);//level);
         //getOSM(31.2, 121.5, 12);//SH is right
         //getOSM(73,127,15);//Lena river
         //getOSM(40.7127, -74.0059,15);//NY
@@ -234,5 +270,9 @@
 <?php
 echo "My first PHP script!";
 ?>
+
+<!-- About Section -->
+    
+
 </body>
 </html>
