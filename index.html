@@ -56,7 +56,6 @@
         .center([0, 40])              //The center of the map (more land is possible)
         .scale(160);                  //Initial zoom of the map
     var country;
-    var g;
     var defs;
     var svg
 
@@ -79,6 +78,7 @@
         .attr("width", width)
         .attr("height", height);
 
+    // Background rect
     svg.append("rect")
         .attr("width", "100%")
         .attr("height", "100%")
@@ -90,7 +90,7 @@
       svg.append("defs");
 
 
-      g=svg.append("path")
+      svg.append("path")
           .attr("id", "countries")
           .datum(topojson.feature(topology, topology.objects.countries))
           .attr("d", path);
@@ -117,22 +117,7 @@
           .attr("xlink:href", "#countries")
           .attr("class", "stroke");
 
-      
-      /*sql.execute("SELECT ST_Simplify(the_geom,0.01) as the_geom FROM {{table_name}} WHERE the_geom IS NOT NULL", {table_name: first_layer})
-      .done(function(collection) {
-          svg.select("#first_layer")
-            .selectAll("path")
-              .data(collection.features)
-            .enter().append("path")
-            .attr("d", path.projection(xy));
-      })
-      .error(function(errors) {
-        // console.log('Errors! Oh no!')
-      });*/
- 
-
-
-});
+    });
 
     var earthquakes;
     sql.execute("SELECT the_geom, quakedate, magnitude FROM {{table_name}} WHERE the_geom IS NOT NULL ORDER BY quakedate ASC", {table_name: 'earthquaked3'})
@@ -163,7 +148,7 @@
         setTimeout(quake, 200);
 
       $(".dataPoint").on('click', function(evt){
-          console.log("PP");
+          //console.log("PP");
           evt.stopPropagation();
           circle_clicked(evt);
       });
@@ -172,50 +157,22 @@
       if (earthquakes.length==i) i = 0;
     }
 
-function circle_clicked(evt){
-    $('.popup').remove();
-    console.log("hey");
-    console.log(evt);
-    currX = evt.clientX;
-    currY = evt.clientY;
-    svg.append("rect")
-        .attr("x", currX)
-        .attr("y", currY)
-        .attr("class", "popup")
-        .attr("width", "200")
-        .attr("height", "100")
-        .attr("fill", "#ffffff");
-  
-}
-
-
-
-function zoom(xyz) {
-  g.transition()
-    .duration(750)
-    .attr("transform", "translate(" + projection.translate() + ")scale(" + xyz[2] + ")translate(-" + xyz[0] + ",-" + xyz[1] + ")")
-    .selectAll(["#countries", "#states", "#cities"])
-    .style("stroke-width", 1.0 / xyz[2] + "px")
-    .selectAll(".city")
-    .attr("d", path.pointRadius(20.0 / xyz[2]));
-  /*defs.transition()
-    .duration(750)
-    .attr("transform", "translate(" + projection.translate() + ")scale(" + xyz[2] + ")translate(-" + xyz[0] + ",-" + xyz[1] + ")")
-    .selectAll(["#countries", "#states", "#cities"])
-    .style("stroke-width", 1.0 / xyz[2] + "px")
-    .selectAll(".city")
-    .attr("d", path.pointRadius(20.0 / xyz[2]));*/
-}
-
-function get_xyz(d) {
-  var bounds = path.bounds(d);
-  var w_scale = (bounds[1][0] - bounds[0][0]) / width;
-  var h_scale = (bounds[1][1] - bounds[0][1]) / height;
-  var z = .96 / Math.max(w_scale, h_scale);
-  var x = (bounds[1][0] + bounds[0][0]) / 2;
-  var y = (bounds[1][1] + bounds[0][1]) / 2 + (height / z / 6);
-  return [x, y, z];
-}
+    function circle_clicked(evt){
+        $('.popup').remove();
+        var pw = 300;
+        var ph = 200;
+        console.log("hey");
+        console.log(evt);
+        currX = evt.clientX - pw/2;
+        currY = evt.clientY - ph/2;
+        svg.append("rect")
+            .attr("x", currX)
+            .attr("y", currY)
+            .attr("class", "popup")
+            .attr("width", pw)
+            .attr("height", ph)
+            .attr("fill", "#ffffff");
+    }
 
 
 </script>
