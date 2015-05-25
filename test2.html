@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<style type="text/css">
+#map{
+    width:400px;
+    height:300px;
+}
+</style>
+<script type="text/javascript" src="http://maplib.khtml.org/khtml.maplib/khtml_all.js"></script>
+<script type="text/javascript">
+var mr=new Object(khtml.maplib);
+var map=null; //global map object
+ 
+function init(){
+   map=new mr.Map(document.getElementById("map"));
+   var center=new mr.LatLng(-115.5362 ,32.9512);
+   map.centerAndZoom(center,10); //12 = zoomlevel
+   //now the map is working, if you don't need overlays you are finished
+
+ 
+}
+</script>
+</head>
+<body onload="init()">
+<div id="map"> </div>
+ 
+</body>
+</html>

@@ -1,0 +1,25 @@
+<html>
+<head></head>
+<body id="b">
+
+<script type="text/javascript" src="http://maplib.khtml.org/khtml.maplib/khtml_all.js"> </script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript" > 
+    var svg = d3.select("body").append("svg")
+        .attr("class", "map")
+        .attr("width", 1000)
+        .attr("height", 800);
+
+
+    // Background rect
+    svg.append("rect")
+        .attr("width", "100%")
+        .attr("height", "100%")
+        .attr("fill", "#3A81B7");
+
+
+var map=khtml.maplib.Map(document.getElementsByClassName("map")[0]);
+map.centerAndZoom(new khtml.maplib.LatLng(38.430946615106265,13.238569903377112),12) //latitude, longitude, zoom
+</script>
+</body>
+</html>
