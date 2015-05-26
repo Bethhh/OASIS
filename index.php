@@ -95,14 +95,14 @@
 
        var bike = L.tileLayer(mapboxURL, {
           attribution: mapattr,
-          maxZoom: 18,
+          maxZoom: 13,
           id: mapid_bike,
           accessToken: ac
        });
 
        var streets = L.tileLayer(mapboxURL, {
           attribution: mapattr,
-          maxZoom: 18,
+          maxZoom: 13,
           id: mapid_streets,
           accessToken: ac
        });
