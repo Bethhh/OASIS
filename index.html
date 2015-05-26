@@ -91,18 +91,18 @@
        var mapattr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> , Imagery © <a href="http://mapbox.com">Mapbox</a>';
 
        var mapid_bike = 'bethshi.c9cd002c';
-       var mapid_streets = 'bethshi.c9cd002c';
+       var mapid_streets = 'bethshi.m99m2dgg';
 
        var bike = L.tileLayer(mapboxURL, {
           attribution: mapattr,
-          maxZoom: 13,
+          maxZoom: 18,
           id: mapid_bike,
           accessToken: ac
        });
 
        var streets = L.tileLayer(mapboxURL, {
           attribution: mapattr,
-          maxZoom: 13,
+          maxZoom: 18,
           id: mapid_streets,
           accessToken: ac
        });
@@ -113,7 +113,7 @@
        //var map = L.map('popup').setView([lat, lng], 13);
        var map = L.map('popup',{
           center: [lat, lng],
-          zoom:13,
+          zoom:level,
           layers: [bike, streets]
        });
 
@@ -207,8 +207,8 @@
           .attr("class", "dataPoint")
           .attr("cx", projection(c.geometry.coordinates)[0])
           .attr("cy", projection(c.geometry.coordinates)[1])
-          .attr("lat", c.geometry.coordinates[0])
-          .attr("lng", c.geometry.coordinates[1])
+          .attr("lat", c.geometry.coordinates[1])
+          .attr("lng", c.geometry.coordinates[0])
           .attr("r", 1)
           .style("fill", "red")
           .style("fill-opacity", 0.5)
@@ -258,10 +258,10 @@
         document.body.appendChild(div);
         //console.log(div);
 
-        getOSM(evt.target.attributes.lat.value, evt.target.attributes.lng.value, 10);//level);
+        getOSM(evt.target.attributes.lat.value, evt.target.attributes.lng.value, 15);//level);
         //getOSM(31.2, 121.5, 12);//SH is right
         //getOSM(73,127,15);//Lena river
-        //getOSM(40.7127, -74.0059,15);//NY
+        //getOSM(40.7127, -74.0059,15);//NY  north, east
     }
 
 </script>
