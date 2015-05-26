@@ -258,7 +258,7 @@
         document.body.appendChild(div);
         //console.log(div);
 
-        getOSM(evt.target.attributes.lat.value+180, evt.target.attributes.lng.value+180, 10);//level);
+        getOSM(evt.target.attributes.lat.value, evt.target.attributes.lng.value, 10);//level);
         //getOSM(31.2, 121.5, 12);//SH is right
         //getOSM(73,127,15);//Lena river
         //getOSM(40.7127, -74.0059,15);//NY
