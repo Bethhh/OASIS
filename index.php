@@ -69,7 +69,7 @@
 
     var data = "submissions.json";
     var database_url= "https://warm-ridge-5036.herokuapp.com"
-    $.getJSON(data, function(){console.log("yay")});
+    $.getJSON(database_url, data, function(){console.log("yay")});
 
  
 
