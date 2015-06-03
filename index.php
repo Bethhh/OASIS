@@ -67,21 +67,11 @@
     
 <script>
 
-    var data;
-    var database_url= "https://warm-ridge-5036.herokuapp.com/submissions.json"
-    var success = false;
-    $.ajax({
-      dataType: "json",
-      url: database_url,
-      data: data,
-      success: success
-    });
+    var data = "submissions.json";
+    var database_url= "https://warm-ridge-5036.herokuapp.com"
+    $.getJSON(data, function(){console.log("yay")});
 
-    if(success){
-      console.log(data);
-    }else{
-      console.log(data);
-    }
+ 
 
     var first_layer = 'd3_world_borders';
      
