@@ -79,8 +79,10 @@
       success: success
     });
 
-    function success(){
+    function success(data){
       console.log("Yay");
+      console.log(data);
+      console.log(JSON.parse(data));
     }
 
     var first_layer = 'd3_world_borders';
@@ -278,6 +280,21 @@
         //getOSM(31.2, 121.5, 12);//SH is right
         //getOSM(73,127,15);//Lena river
         //getOSM(40.7127, -74.0059,15);//NY  north, east
+        ppw = 100;
+        pph = 50;
+
+        currX = currX + pw;
+        currY = currY + ph;
+
+
+        var pdiv = document.createElement("div");
+        div.setAttribute("id", "popup-pic");
+
+        div.style.width = pw + "px";
+        div.style.height = ph + "px";
+        div.style.top = currY + "px";
+        div.style.left = currX + "px";
+        document.body.appendChild(div);
     }
 
 </script>
