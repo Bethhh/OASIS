@@ -82,7 +82,7 @@
     function success(data){
       console.log("Yay");
       console.log(data);
-      console.log(JSON.parse(data));
+      //console.log(JSON.parse(data));
     }
 
     var first_layer = 'd3_world_borders';
@@ -283,19 +283,35 @@
         ppw = 100;
         pph = 50;
 
-        currX = currX + pw;
-        currY = currY + ph;
+        currX = currX + pw-ppw;
+        currY = currY + ph-pph;
 
 
         var pdiv = document.createElement("div");
-        div.setAttribute("id", "popup-pic");
+        pdiv.setAttribute("id", "popup-pic");
 
-        div.style.width = pw + "px";
-        div.style.height = ph + "px";
-        div.style.top = currY + "px";
-        div.style.left = currX + "px";
-        document.body.appendChild(div);
-    }
+        pdiv.style.width = ppw + "px";
+        pdiv.style.height = pph + "px";
+        pdiv.style.top = currY + "px";
+        pdiv.style.left = currX + "px";
+        document.body.appendChild(pdiv);
+
+        var width = 100,
+            height = 50;
+
+        var svg = d3.select("popup-pic").append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+        var g = svg.append("g");
+
+        var img = g.append("svg:image")
+            .attr("xlink:href", "http://www.clker.com/cliparts/1/4/5/a/1331068897296558865Sitting%20Racoon.svg")
+            .attr("width", 50)
+            .attr("height", 50)
+            .attr("x", 228)
+            .attr("y",53);
+            }
 
 </script>
 
