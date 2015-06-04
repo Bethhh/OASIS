@@ -296,7 +296,7 @@
         pdiv.style.left = currX + "px";
         document.body.appendChild(pdiv);
 
-        var width = 100,
+        /*var width = 100,
             height = 50;
 
         var svg = d3.select("popup-pic").append("svg")
@@ -308,9 +308,7 @@
         var img = g.append("svg:image")
             .attr("xlink:href", "http://www.clker.com/cliparts/1/4/5/a/1331068897296558865Sitting%20Racoon.svg")
             .attr("width", 50)
-            .attr("height", 50)
-            .attr("x", 228)
-            .attr("y",53);
+            .attr("height", 50);*/
             }
 
 </script>
