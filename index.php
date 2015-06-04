@@ -3,18 +3,18 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <title>OASIS Map</title>
-    <script src="https://d3js.org/d3.v3.min.js"></script>
-    <script src="https://d3js.org/d3.geo.tile.v0.min.js"></script>
-    <script src="https://d3js.org/topojson.v1.min.js"></script>
-    <script src="https://libs.cartocdn.com/cartodb.js/v2/cartodb.js"></script>
-    <link rel="stylesheet" href="https://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-    <script src="https://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/d3.geo.tile.v0.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="http://libs.cartocdn.com/cartodb.js/v2/cartodb.js"></script>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
         <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/scrolling-nav.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
     <style type="text/css">
  
@@ -68,7 +68,7 @@
 <script>
 
     var data = "submissions.json";
-    var database_url= "https://warm-ridge-5036.herokuapp.com"
+    var database_url= "http://warm-ridge-5036.herokuapp.com"
     //$.getJSON(database_url, data, function(){console.log("yay")});//Cross Domain need to be handle properly later
 
      $.ajax({
