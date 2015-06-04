@@ -280,7 +280,7 @@
         //getOSM(31.2, 121.5, 12);//SH is right
         //getOSM(73,127,15);//Lena river
         //getOSM(40.7127, -74.0059,15);//NY  north, east
-        ppw = 100;
+       /* ppw = 100;
         pph = 50;
 
         currX = currX + pw-ppw;
@@ -294,7 +294,7 @@
         pdiv.style.height = pph + "px";
         pdiv.style.top = currY + "px";
         pdiv.style.left = currX + "px";
-        document.body.appendChild(pdiv);
+        document.body.appendChild(pdiv);*/
 
         /*var width = 100,
             height = 50;
