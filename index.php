@@ -143,6 +143,7 @@
     var country;
     var defs;
     var dmap;
+    var layerGroup;
 
     
      
@@ -190,9 +191,11 @@
          });
        }else{
          dmap.setView(new L.LatLng(lat, lng), level-2);
-         //dmap.layers.clearLayers();       
+         //dmap.layers.clearLayers(); 
+         layerGroup.clearLayers();      
        }
-       L.control.layers(baseMaps, overlayMaps).addTo(dmap);
+       layerGroup = L.control.layers(baseMaps, overlayMaps)
+       layerGroup.addTo(dmap);
 
 
        //var map = L.map('popup').setView([lat, lng], 13);
