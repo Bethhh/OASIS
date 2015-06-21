@@ -167,9 +167,9 @@
         .attr("height", height);
 
     // Background rect
-    svg.append("rect")
-        .attr("width", "100%")
-        .attr("height", "100%");
+    //svg.append("rect")
+      //  .attr("width", "100%")
+        //.attr("height", "100%");
         //.attr("fill", "#000000");//"#3A81B7");
 
     d3.json("./d3/world-50m.json", function(error, topology) {
