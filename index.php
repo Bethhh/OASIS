@@ -315,7 +315,7 @@
     var viewing = false;
 
     function circle_clicked(evt){
-        console.log(viewing);
+        //console.log(viewing);
         if(!viewing){
           viewing = true;
           $('#popup').remove();
