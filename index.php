@@ -91,7 +91,7 @@
         height = 600;
 
     var projection = d3.geo.mercator()       
-        .center([-20, 50])              //The center of the map (more land is possible)
+        .center([-30, 40])              //The center of the map (more land is possible)
         .scale(160);                  //Initial zoom of the map
     var country;
     var defs;
@@ -154,15 +154,15 @@
         .scale(projection.scale() * 2 * Math.PI)
         .translate(projection([0, 0]))
         .zoomDelta((window.devicePixelRatio || 1) - .5);
-
-    function redraw() {
-      svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
-    }
+//
+  //  function redraw() {
+    //  svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+    //}
     
 
     var svg = d3.select("#map").append("svg")
-        .call(d3.behavior.zoom()
-                .on("zoom", redraw))
+       // .call(d3.behavior.zoom()
+         //       .on("zoom", redraw))
         .attr("width", width)
         .attr("height", height);
 
@@ -182,15 +182,15 @@
             .datum(topojson.feature(topology, topology.objects.countries))
             .attr("d", path);
 
-        svg.append("clipPath")
-            .attr("id", "clip")
-          .append("use")
-            .attr("xlink:href", "#countries");
+       // svg.append("clipPath")
+         //   .attr("id", "clip")
+          //.append("use")
+            //.attr("xlink:href", "#countries");
 
 
         svg.append("g")
             .attr("id", "first_layer")
-            .attr("clip-path", "url(#clip)")
+            //.attr("clip-path", "url(#clip)")
           .selectAll("image")
             .data(tiles)
           .enter().append("image")
