@@ -169,14 +169,13 @@
     // Background rect
     svg.append("rect")
         .attr("width", "100%")
-        .attr("height", "100%")
-        .attr("fill", "#000000");//"#3A81B7");
+        .attr("height", "100%");
+        //.attr("fill", "#000000");//"#3A81B7");
 
     d3.json("./d3/world-50m.json", function(error, topology) {
         var tiles = tile();
 
         svg.append("defs");
-
 
         svg.append("path")
             .attr("id", "countries")
@@ -243,13 +242,11 @@
 
 
       $(".dataPoint").on('hover', function(evt){
-          //console.log("PP");
           evt.stopPropagation();
           circle_clicked(evt);
       });
 
       $(".dataPoint").on('click', function(evt){
-          //console.log("PP");
           viewing = false;
           evt.stopPropagation();
           circle_clicked(evt);
@@ -301,8 +298,6 @@
 <?php
 echo "Test map!";
 ?>
-
-<!-- About Section -->
     
 
 </body>
