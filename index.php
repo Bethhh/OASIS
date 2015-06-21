@@ -171,30 +171,30 @@
         .attr("height", height);
 
     // Background rect
-    //svg.append("rect")
-      //  .attr("width", "100%")
-        //.attr("height", "100%");
-        //.attr("fill", "#000000");//"#3A81B7");
+    svg.append("rect")
+        .attr("width", "100%")
+        .attr("height", "100%");
+        .attr("fill", "#000000");//"#3A81B7");
 
     d3.json("./d3/world-50m.json", function(error, topology) {
         var tiles = tile();
 
         svg.append("defs");
 
-        //svg.append("path")
-          //  .attr("id", "countries")
-            //.datum(topojson.feature(topology, topology.objects.countries))
-            //.attr("d", path);
+        svg.append("path")
+            .attr("id", "countries")
+            .datum(topojson.feature(topology, topology.objects.countries))
+            .attr("d", path);
 
-       // svg.append("clipPath")
-         //   .attr("id", "clip")
-          //.append("use")
-            //.attr("xlink:href", "#countries");
+        svg.append("clipPath")
+            .attr("id", "clip")
+          .append("use")
+            .attr("xlink:href", "#countries");
 
 
         svg.append("g")
             .attr("id", "first_layer")
-            //.attr("clip-path", "url(#clip)")
+            .attr("clip-path", "url(#clip)")
           .selectAll("image")
             .data(tiles)
           .enter().append("image")
