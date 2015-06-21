@@ -59,7 +59,12 @@
     }*/
 
     .tiles image { 
-      margin:0px 
+      margin: 0px;
+      pointer-events: none;
+      position: absolute;
+      width: 256px;
+      height: 256px;
+
     }
 </style>
  
