@@ -182,14 +182,6 @@
             "Points": points
        };
 
-       //var map = L.map('popup').setView([lat, lng], 13);
-       var map = L.map('popup',{
-          center: [lat, lng],
-          zoom:level,
-          layers: [bike, streets]
-       });
-       L.control.layers(baseMaps, overlayMaps).addTo(map);
-
        if(!dmap){
          dmap = L.map('dMap',{
             center: [lat, lng],
@@ -201,6 +193,17 @@
          dmap.clearLayers();       
        }
        L.control.layers(baseMaps, overlayMaps).addTo(dmap);
+       
+
+       //var map = L.map('popup').setView([lat, lng], 13);
+       var map = L.map('popup',{
+          center: [lat, lng],
+          zoom:level,
+          layers: [bike, streets]
+       });
+       L.control.layers(baseMaps, overlayMaps).addTo(map);
+
+
 
     }
 
@@ -315,7 +318,7 @@
     var viewing = false;
 
     function circle_clicked(evt){
-        //console.log(viewing);
+        console.log(viewing);
         if(!viewing){
           viewing = true;
           $('#popup').remove();
