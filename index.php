@@ -7,7 +7,7 @@
     <script src="http://d3js.org/d3.geo.tile.v0.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script src="http://libs.cartocdn.com/cartodb.js/v2/cartodb.js"></script>
-    <script type="text/javascript" src="https://raw.githubusercontent.com/pa7/heatmap.js/develop/plugins/leaflet-heatmap.js"></script>
+    <script type="text/javascript" src="https://rawgit.com/pa7/heatmap.js/develop/plugins/leaflet-heatmap.js"></script>
     <script>L_DISABLE_3D = true;</script>
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
