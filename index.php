@@ -253,6 +253,7 @@
 
       $(".dataPoint").on('click', function(evt){
           //console.log("PP");
+          viewing = false;
           evt.stopPropagation();
           circle_clicked(evt);
       });
@@ -305,7 +306,7 @@
 
 
 <?php
-echo "My first PHP script!";
+echo "Test map!";
 ?>
 
 <!-- About Section -->
