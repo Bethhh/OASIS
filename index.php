@@ -84,7 +84,7 @@
           <div id="chart">
           </div>
           <div id="sampleImage">
-            <img src="ph.gif"></img>
+            <img src="ph.gif" >
           </div>
        </div>
   </div>
