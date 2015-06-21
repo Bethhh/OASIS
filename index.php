@@ -44,7 +44,6 @@
     #dMap, #chart, #sampleImage {
       width:500px;
       margin:0px;
-      height:0px;
     }
     .popup {
       position: absolute;
