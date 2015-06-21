@@ -342,7 +342,7 @@
           lngs.push(c.geometry.coordinates[0]);
         }
 
-        setTimeout(quake, 200);
+        setTimeout(quake, 400);
 
 
       //console.log("c=", c.geometry.coordinates);
