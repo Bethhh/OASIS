@@ -313,10 +313,8 @@
 
     var j = 0;
     for(j = 0; j <earthquakes.length; j++){
-
-        lats.push(c.geometry.coordinates[1]);
-        lngs.push(c.geometry.coordinates[0]);
-
+      lats.push(earthquakes[j].geometry.coordinates[1]);
+      lngs.push(earthquakes[j].geometry.coordinates[0]);
     }
  
   
