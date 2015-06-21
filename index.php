@@ -130,7 +130,7 @@
         height = 700;
 
     var projection = d3.geo.mercator()       
-        .center([-5, 60])              //The center of the map (more land is possible)
+        .center([-10, 60])              //The center of the map (more land is possible)
         .scale(160);                  //Initial zoom of the map
     var country;
     var defs;
@@ -166,6 +166,12 @@
 
        //var map = L.map('popup').setView([lat, lng], 13);
        var map = L.map('popup',{
+          center: [lat, lng],
+          zoom:level,
+          layers: [bike, streets]
+       });
+
+       var map = L.map('dMap',{
           center: [lat, lng],
           zoom:level,
           layers: [bike, streets]
