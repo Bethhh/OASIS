@@ -87,11 +87,11 @@
     var first_layer = 'd3_world_borders';
      
     var sql = new cartodb.SQL({ user: 'viz2', format: 'geojson', dp: 5});
-    var width = 900,                  //svg/map width and height
+    var width = 1000,                  //svg/map width and height
         height = 600;
 
     var projection = d3.geo.mercator()       
-        .center([-30, 40])              //The center of the map (more land is possible)
+        .center([0, 40])              //The center of the map (more land is possible)
         .scale(160);                  //Initial zoom of the map
     var country;
     var defs;
