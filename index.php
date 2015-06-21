@@ -323,6 +323,7 @@
           div.style.height = ph + "px";
           div.style.top = currY + "px";
           div.style.left = currX + "px";
+          div.style.position = "absolute";
           document.getElementById("map").appendChild(div);
 
           getOSM(evt.target.attributes.lat.value, evt.target.attributes.lng.value, 15);//level);
