@@ -55,6 +55,10 @@
       fill: orange;
       stroke-width: 2.5px;
     }*/
+
+    image { 
+      margin:0px 
+    }
 </style>
  
 </head>
