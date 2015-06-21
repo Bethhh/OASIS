@@ -81,7 +81,7 @@
     .tiles { 
       margin: 0px;
       pointer-events: none;
-      position: absolute;
+      position: relative;
       width: 256px;
       height: 256px;
     }
