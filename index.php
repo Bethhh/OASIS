@@ -173,8 +173,6 @@
        var data_point = L.marker([lat, lng]).bindPopup("Here");
        var points = L.layerGroup([data_point]);
 
-
-
        var baseMaps = {
             "Bike": bike,
             "Streets": streets
@@ -325,6 +323,7 @@
     var viewing = false;
 
     function circle_clicked(evt){
+        console.log(viewing);
         if(!viewing){
           viewing = true;
           $('#popup').remove();
@@ -349,6 +348,7 @@
           div.style.top = currY + "px";
           div.style.left = currX + "px";
           div.style.position = "absolute";
+          div.style.z-index="100";
           document.getElementById("map").appendChild(div);
 
           getOSM(evt.target.attributes.lat.value, evt.target.attributes.lng.value, 15);//level);
