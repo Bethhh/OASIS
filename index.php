@@ -181,16 +181,18 @@
             "Streets": streets2
        };
 
-       var overlayMaps2 = {
-            "Points": points
-       };
+       
 
        if(!dmap){
          var k = 0;
-         var points;
+         var points2;
+
+         var overlayMaps2 = {
+             "Points": points2
+         };
          for(k=0; k<lats.length; k++){
             var p = L.marker([lats[k], lngs[k]]).bindPopup("Here");
-            points.push(p);
+            points2.push(p);
          }
          dmap = L.map('dMap',{
             center: [lat, lng],
