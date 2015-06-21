@@ -185,16 +185,16 @@
 
        if(!dmap){
          var k = 0;
-         var points2;
+         //var points2;
 
          var overlayMaps2 = {
-             "Points": points2
+             //"Points": points2
          };
-         for(k=0; k<lats.length; k++){
-            var p = L.marker([lats[k], lngs[k]]).bindPopup("Here");
-            points2.push(p);
-         }
-         console.log(points);
+         //for(k=0; k<lats.length; k++){
+           // var p = L.marker([lats[k], lngs[k]]).bindPopup("Here");
+            //points2.push(p);
+         //}
+         //console.log(points);
          dmap = L.map('dMap',{
             center: [lat, lng],
             zoom:level-2,
