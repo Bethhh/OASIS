@@ -336,9 +336,7 @@
           div.style.left = currX + "px";
           div.style.position = "absolute";
 
-          div.mouseleave(function() {
-            viewing = false;
-          });
+
       
           document.getElementById("map").appendChild(div);
 
@@ -347,6 +345,9 @@
           //getOSM(73,127,15);//Lena river
           //getOSM(40.7127, -74.0059,15);//NY  north, east
 
+          div.mouseleave(function() {
+            viewing = false;
+          });
 
         }//viewing  
 
