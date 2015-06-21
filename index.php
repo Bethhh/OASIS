@@ -190,10 +190,10 @@
          });
        }else{
          dmap.setView(new L.LatLng(lat, lng), level-2);
-         dmap.clearLayers();       
+         dmap.layers.clearLayers();       
        }
        L.control.layers(baseMaps, overlayMaps).addTo(dmap);
-       
+
 
        //var map = L.map('popup').setView([lat, lng], 13);
        var map = L.map('popup',{
