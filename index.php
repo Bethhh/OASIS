@@ -335,6 +335,10 @@
           div.style.top = currY + "px";
           div.style.left = currX + "px";
           div.style.position = "absolute";
+
+          div.mouseleave(function() {
+            viewing = false;
+          });
       
           document.getElementById("map").appendChild(div);
 
@@ -348,9 +352,7 @@
 
     }//circle clicked
 
-    $( "#popup" ).mouseleave(function() {
-      viewing = false;
-    });
+
 
 </script>
 
