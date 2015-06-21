@@ -357,10 +357,10 @@
 
 
 
-      //if(first){
-        //lats.push(c.geometry.coordinates[1]);
-        //lngs.push(c.geometry.coordinates[0]);
-      //}
+      if(first){
+        lats.push(c.geometry.coordinates[1]);
+        lngs.push(c.geometry.coordinates[0]);
+      }
 
       i++;
       if (earthquakes.length==i) {
