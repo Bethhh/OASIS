@@ -251,6 +251,12 @@
           circle_clicked(evt);
       });
 
+      $(".dataPoint").on('click', function(evt){
+          //console.log("PP");
+          evt.stopPropagation();
+          circle_clicked(evt);
+      });
+
       i++;
       if (earthquakes.length==i) i = 0;
     }
