@@ -19,7 +19,6 @@
     <style type="text/css">
  
     body{
-        background:black;
     }
     #map {
       position: absolute;
@@ -30,11 +29,11 @@
       z-index: 1;
       background-color: white;
     }
-    svg:active {
+    /*svg:active {
       cursor: move;
       cursor: -moz-grabbing;
       cursor: -webkit-grabbing;
-    }
+    }*/
     circle {
       fill: none;
       stroke-width: 1.5px;
@@ -52,10 +51,10 @@
       stroke: white;
       stroke-width: 0.5px;
     }
-    .countries :hover {
+    /*.countries :hover {
       fill: orange;
       stroke-width: 2.5px;
-    }
+    }*/
 </style>
  
 </head>
@@ -71,7 +70,7 @@
     var database_url= "http://warm-ridge-5036.herokuapp.com"
     //$.getJSON(database_url, data, function(){console.log("yay")});//Cross Domain need to be handle properly later
 
-     $.ajax({
+    $.ajax({
       type: "POST",
       dataType: "jsonp",
       url: database_url,
@@ -92,7 +91,7 @@
         height = 600;
 
     var projection = d3.geo.mercator()       
-        .center([-30, 50])              //The center of the map (more land is possible)
+        .center([-20, 50])              //The center of the map (more land is possible)
         .scale(160);                  //Initial zoom of the map
     var country;
     var defs;
