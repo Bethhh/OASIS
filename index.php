@@ -55,7 +55,7 @@
     }
     .popup {
       position: absolute;
-      z-index: 1;
+      z-index: 100;
       background-color: white;
     }
     /*svg:active {
@@ -194,7 +194,8 @@
 
        L.control.layers(baseMaps, overlayMaps).addTo(map);
 
-       if(!dmap){
+       //if(!dmap){
+         dmap = null;
          dmap = L.map('dMap',{
             center: [lat, lng],
             zoom:level-2,
@@ -202,9 +203,9 @@
          });
 
          L.control.layers(baseMaps, overlayMaps).addTo(dmap);
-       }else{
-         dmap.setView(new L.LatLng(lat, lng), level-2);
-       }
+       //}else{
+         //dmap.setView(new L.LatLng(lat, lng), level-2);
+       //}
 
     }
 
