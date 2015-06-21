@@ -28,7 +28,7 @@
       padding:0px;
     }
     #map {
-      position: relative;
+      position: absolute;
       z-index: 0;
       margin: 0px;
       padding:0px;
@@ -80,7 +80,10 @@
 
     .tiles { 
       margin: 0px;
-
+      pointer-events: none;
+      position: absolute;
+      width: 256px;
+      height: 256px;
     }
 </style>
  
