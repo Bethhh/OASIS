@@ -186,11 +186,11 @@
        };
 
        if(!dmap){
-         //var k = 0;
-         //for(k=0; k<lats.length; k++){
-           // var p = L.marker([lats[k], lngs[k]]).bindPopup("Here");
-            //points.push(p);
-         //}
+         var k = 0;
+         for(k=0; k<lats.length; k++){
+            var p = L.marker([lats[k], lngs[k]]).bindPopup("Here");
+            points.push(p);
+         }
          dmap = L.map('dMap',{
             center: [lat, lng],
             zoom:level-2,
@@ -353,9 +353,6 @@
           evt.stopPropagation();
           circle_clicked(evt);
       });
-
-
-
 
       i++;
       if (earthquakes.length==i) {
