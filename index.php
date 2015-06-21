@@ -311,11 +311,7 @@
         quake();
       });
 
-    var j = 0;
-    for(j = 0; j <earthquakes.length; j++){
-      lats.push(earthquakes[j].geometry.coordinates[1]);
-      lngs.push(earthquakes[j].geometry.coordinates[0]);
-    }
+    var first = true;
  
   
     var i = 0;    
@@ -358,8 +354,18 @@
           circle_clicked(evt);
       });
 
+
+
+      if(first){
+        lats.push(c.geometry.coordinates[1]);
+        lngs.push(c.geometry.coordinates[0]);
+      }
+
       i++;
-      if (earthquakes.length==i) i = 0;
+      if (earthquakes.length==i) {
+        i = 0;
+        first = false;
+      }
     }
 
     var viewing = false;
