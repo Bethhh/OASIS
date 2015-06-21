@@ -261,63 +261,44 @@
       if (earthquakes.length==i) i = 0;
     }
 
+    var viewing = false;
+
     function circle_clicked(evt){
-        $('#popup').remove();
+        if(!viewing){
+          viewing = true;
+          $('#popup').remove();
 
-        var pw = 300;
-        var ph = 200;
-        //console.log("hey");
-        //console.log(evt);
+          var pw = 300;
+          var ph = 200;
+          //console.log("hey");
+          //console.log(evt);
 
-        //currX = evt.clientX - pw/2;
-        currX = evt.clientX;
-        currY = evt.clientY;
-        //currY = evt.clientY - ph/2;
+          //currX = evt.clientX - pw/2;
+          currX = evt.clientX;
+          currY = evt.clientY;
+          //currY = evt.clientY - ph/2;
 
-        var div = document.createElement("div");
-        div.setAttribute("id", "popup");
+          var div = document.createElement("div");
+          div.setAttribute("id", "popup");
 
-        div.style.width = pw + "px";
-        div.style.height = ph + "px";
-        div.style.top = currY + "px";
-        div.style.left = currX + "px";
-        document.body.appendChild(div);
-        //console.log(div);
+          div.style.width = pw + "px";
+          div.style.height = ph + "px";
+          div.style.top = currY + "px";
+          div.style.left = currX + "px";
+          document.body.appendChild(div);
+          //console.log(div);
 
-        getOSM(evt.target.attributes.lat.value, evt.target.attributes.lng.value, 15);//level);
-        //getOSM(31.2, 121.5, 12);//SH is right
-        //getOSM(73,127,15);//Lena river
-        //getOSM(40.7127, -74.0059,15);//NY  north, east
-       /* ppw = 100;
-        pph = 50;
+          getOSM(evt.target.attributes.lat.value, evt.target.attributes.lng.value, 15);//level);
+          //getOSM(31.2, 121.5, 12);//SH is right
+          //getOSM(73,127,15);//Lena river
+          //getOSM(40.7127, -74.0059,15);//NY  north, east
 
-        currX = currX + pw-ppw;
-        currY = currY + ph-pph;
-
-
-        var pdiv = document.createElement("div");
-        pdiv.setAttribute("id", "popup-pic");
-
-        pdiv.style.width = ppw + "px";
-        pdiv.style.height = pph + "px";
-        pdiv.style.top = currY + "px";
-        pdiv.style.left = currX + "px";
-        document.body.appendChild(pdiv);*/
-
-        /*var width = 100,
-            height = 50;
-
-        var svg = d3.select("popup-pic").append("svg")
-            .attr("width", width)
-            .attr("height", height);
-
-        var g = svg.append("g");
-
-        var img = g.append("svg:image")
-            .attr("xlink:href", "http://www.clker.com/cliparts/1/4/5/a/1331068897296558865Sitting%20Racoon.svg")
-            .attr("width", 50)
-            .attr("height", 50);*/
-            }
+          $( "#popup" ).mouseleave(function() {
+            viewing = false;
+          });
+        }
+      
+     }
 
 </script>
 
