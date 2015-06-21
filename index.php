@@ -172,8 +172,8 @@
           accessToken: ac
        });
 
-       //var data_point2 = L.marker([lat, lng]).bindPopup("Here");
-       //var points2 = L.layerGroup([data_point2]);
+       var data_point2 = L.marker([lat, lng]).bindPopup("Here");
+       var points = L.layerGroup([data_point2]);
 
 
        var baseMaps2 = {
@@ -186,11 +186,11 @@
        };
 
        if(!dmap){
-         var k = 0;
-         for(k=0; k<lats.length; k++){
-            var p = L.marker([lats[k], lngs[k]]).bindPopup("Here");
-            points.push(p);
-         }
+         //var k = 0;
+         //for(k=0; k<lats.length; k++){
+           // var p = L.marker([lats[k], lngs[k]]).bindPopup("Here");
+            //points.push(p);
+         //}
          dmap = L.map('dMap',{
             center: [lat, lng],
             zoom:level-2,
@@ -357,10 +357,10 @@
 
 
 
-      if(first){
-        lats.push(c.geometry.coordinates[1]);
-        lngs.push(c.geometry.coordinates[0]);
-      }
+      //if(first){
+        //lats.push(c.geometry.coordinates[1]);
+        //lngs.push(c.geometry.coordinates[0]);
+      //}
 
       i++;
       if (earthquakes.length==i) {
