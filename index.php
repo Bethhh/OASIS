@@ -178,7 +178,7 @@
         .attr("fill", "#000000");//"#3A81B7");
 
     d3.json("./d3/world-50m.json", function(error, topology) {
-        var tiles = tile();
+        //var tiles = tile();
 
         svg.append("defs");
 
@@ -196,15 +196,15 @@
         svg.append("g")
             .attr("id", "first_layer")
             .attr("clip-path", "url(#clip)")
-          .selectAll("image")
-            .data(tiles)
-          .enter().append("image")
-            .attr("xlink:href", function(d) { return "http://" + ["a", "b", "c", "d"][Math.random() * 4 | 0] + ".tiles.mapbox.com/v3/mapbox.natural-earth-2/" + d[2] + "/" + d[0] + "/" + d[1] + ".png"; })
-            .attr("width", Math.round(tiles.scale))
-            .attr("height", Math.round(tiles.scale))
-            .attr("class", "tiles")
-            .attr("x", function(d) { return Math.round((d[0] + tiles.translate[0]) * tiles.scale); })
-            .attr("y", function(d) { return Math.round((d[1] + tiles.translate[1]) * tiles.scale); });
+          //.selectAll("image")
+            //.data(tiles)
+          //.enter().append("image")
+           // .attr("xlink:href", function(d) { return "http://" + ["a", "b", "c", "d"][Math.random() * 4 | 0] + ".tiles.mapbox.com/v3/mapbox.natural-earth-2/" + d[2] + "/" + d[0] + "/" + d[1] + ".png"; })
+           // .attr("width", Math.round(tiles.scale))
+            //.attr("height", Math.round(tiles.scale))
+            //.attr("class", "tiles")
+            //.attr("x", function(d) { return Math.round((d[0] + tiles.translate[0]) * tiles.scale); })
+            //.attr("y", function(d) { return Math.round((d[1] + tiles.translate[1]) * tiles.scale); });
 
         svg.append("use")
             .attr("xlink:href", "#countries")
