@@ -58,7 +58,7 @@
       stroke-width: 2.5px;
     }*/
 
-    .tiles simage { 
+    .tiles image { 
       margin:0px 
     }
 </style>
