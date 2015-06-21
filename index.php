@@ -28,7 +28,7 @@
       padding:0px;
     }
     #map {
-      position: absolute;
+      position: relative;
       z-index: 0;
       margin: 0px;
       padding:0px;
@@ -46,7 +46,7 @@
       margin:0px;
     }
     #dMap {
-      position: absolute;
+      position: relative;
       z-index: 0;
       margin: 0px;
       padding:0px;
