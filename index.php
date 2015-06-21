@@ -345,7 +345,7 @@
           //getOSM(73,127,15);//Lena river
           //getOSM(40.7127, -74.0059,15);//NY  north, east
 
-          div.mouseleave(function() {
+          $('popup').addEventListener("mouseout", function( event ) {
             viewing = false;
           });
 
