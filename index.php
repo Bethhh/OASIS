@@ -174,11 +174,7 @@
 
        //var data_point2 = L.marker([lat, lng]).bindPopup("Here");
        //var points2 = L.layerGroup([data_point2]);
-       var k = 0;
-       for(k=0; k<lats.length; k++){
-          var p = L.marker([lats[k], lngs[k]]).bindPopup("Here");
-          points.push(p);
-       }
+
 
        var baseMaps2 = {
             "Bike": bike2,
@@ -190,6 +186,11 @@
        };
 
        if(!dmap){
+         var k = 0;
+         for(k=0; k<lats.length; k++){
+            var p = L.marker([lats[k], lngs[k]]).bindPopup("Here");
+            points.push(p);
+         }
          dmap = L.map('dMap',{
             center: [lat, lng],
             zoom:level-2,
