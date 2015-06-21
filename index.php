@@ -74,7 +74,7 @@
     var database_url= "http://warm-ridge-5036.herokuapp.com"
     //$.getJSON(database_url, data, function(){console.log("yay")});//Cross Domain need to be handle properly later
 
-    $.ajax({
+    /*$.ajax({
       type: "POST",
       dataType: "jsonp",
       url: database_url,
@@ -86,7 +86,7 @@
       console.log("Yay");
       console.log(data);
       //console.log(JSON.parse(data));
-    }
+    }*/
 
     var first_layer = 'd3_world_borders';
      
