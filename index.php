@@ -22,7 +22,7 @@
     body{
     }
     #container {
-      width:1500px;
+      width:1400px;
       height: 700px;
       margin:0px;
       padding:0px;
@@ -35,15 +35,23 @@
       float:left;
     }
     #description {
-      width:500px;
+      width:400px;
       height:700px;
       margin:0px;
       padding:0px;
       float:left;
     }
     #dMap, #chart, #sampleImage {
-      width:500px;
+      width:400px;
       margin:0px;
+    }
+    #dMap {
+      position: absolute;
+      z-index: 0;
+      margin: 0px;
+      padding:0px;
+      width: 400px;
+      height:300px;
     }
     .popup {
       position: absolute;
@@ -130,7 +138,7 @@
         height = 700;
 
     var projection = d3.geo.mercator()       
-        .center([-10, 60])              //The center of the map (more land is possible)
+        .center([-15, 60])              //The center of the map (more land is possible)
         .scale(160);                  //Initial zoom of the map
     var country;
     var defs;
