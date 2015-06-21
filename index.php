@@ -345,7 +345,7 @@
           div.style.top = currY + "px";
           div.style.left = currX + "px";
           div.style.position = "absolute";
-          //div.style.z-index="100";
+          div.style.z-index="1";
           document.getElementById("map").appendChild(div);
 
           getOSM(evt.target.attributes.lat.value, evt.target.attributes.lng.value, 15);//level);
