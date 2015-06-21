@@ -186,15 +186,15 @@
             .datum(topojson.feature(topology, topology.objects.countries))
             .attr("d", path);
 
-      //  svg.append("clipPath")
-        //    .attr("id", "clip")
-          svg.append("use")
+        svg.append("clipPath")
+            .attr("id", "clip")
+          .append("use")
             .attr("xlink:href", "#countries");
 
 
         svg.append("g")
             .attr("id", "first_layer")
-            //.attr("clip-path", "url(#clip)")
+            .attr("clip-path", "url(#clip)")
           .selectAll("image")
             .data(tiles)
           .enter().append("image")
@@ -245,7 +245,7 @@
       //console.log("y=", projection(c.geometry.coordinates)[1]);
 
 
-      $(".dataPoint").on('click', function(evt){
+      $(".dataPoint").on('hover', function(evt){
           //console.log("PP");
           evt.stopPropagation();
           circle_clicked(evt);
@@ -258,12 +258,15 @@
     function circle_clicked(evt){
         $('#popup').remove();
 
-        var pw = 400;
-        var ph = 300;
+        var pw = 300;
+        var ph = 200;
         //console.log("hey");
         //console.log(evt);
-        currX = evt.clientX - pw/2;
-        currY = evt.clientY - ph/2;
+
+        //currX = evt.clientX - pw/2;
+        currX = evt.clientX;
+        currY = evt.clientY;
+        //currY = evt.clientY - ph/2;
 
         var div = document.createElement("div");
         div.setAttribute("id", "popup");
