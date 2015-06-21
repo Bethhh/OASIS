@@ -190,7 +190,7 @@
          });
        }else{
          dmap.setView(new L.LatLng(lat, lng), level-2);
-         dmap.layers.clearLayers();       
+         //dmap.layers.clearLayers();       
        }
        L.control.layers(baseMaps, overlayMaps).addTo(dmap);
 
