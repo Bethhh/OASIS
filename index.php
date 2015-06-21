@@ -302,8 +302,6 @@
     sql.execute("SELECT the_geom, quakedate, magnitude FROM {{table_name}} WHERE the_geom IS NOT NULL ORDER BY quakedate ASC", {table_name: 'earthquaked3'})
       .done(function(collection) {
         earthquakes = collection.features;
-        var p = L.marker([earthquakes[i].geometry.coordinates[1], earthquakes[i].geometry.coordinates[0]]).bindPopup("Here");
-        points.push(p);
         quake();
       });
 
@@ -332,7 +330,8 @@
           .remove()
         setTimeout(quake, 200);
 
-
+        var p = L.marker([c.geometry.coordinates[1], c.geometry.coordinates[0]]).bindPopup("Here");
+        points.push(p);
 
       //console.log("c=", c.geometry.coordinates);
       //console.log("x=", projection(c.geometry.coordinates)[0]);
