@@ -194,8 +194,7 @@
 
        L.control.layers(baseMaps, overlayMaps).addTo(map);
 
-       //if(!dmap){
-         dmap = null;
+       if(!dmap){
          dmap = L.map('dMap',{
             center: [lat, lng],
             zoom:level-2,
@@ -203,9 +202,11 @@
          });
 
          L.control.layers(baseMaps, overlayMaps).addTo(dmap);
-       //}else{
-         //dmap.setView(new L.LatLng(lat, lng), level-2);
-       //}
+       }else{
+         dmap.setView(new L.LatLng(lat, lng), level-2);
+         dmap.clearLayers();
+         L.control.layers(baseMaps, overlayMaps).addTo(dmap);
+       }
 
     }
 
