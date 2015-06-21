@@ -245,6 +245,8 @@
          //dmap.layers.clearLayers(); 
          //layerGroup.clearLayers();      
        }
+       heatmapLayer.setData(testData);
+
 
 
 
