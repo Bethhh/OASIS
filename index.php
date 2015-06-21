@@ -270,12 +270,13 @@
 
           var pw = 300;
           var ph = 200;
+          var gap = 50;
           //console.log("hey");
           //console.log(evt);
 
           //currX = evt.clientX - pw/2;
-          currX = evt.clientX;
-          currY = evt.clientY;
+          currX = evt.clientX - 50;
+          currY = evt.clientY - 50;
           //currY = evt.clientY - ph/2;
 
           var div = document.createElement("div");
