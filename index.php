@@ -142,6 +142,7 @@
         .scale(160);                  //Initial zoom of the map
     var country;
     var defs;
+    var dmap;
 
     
      
@@ -179,11 +180,15 @@
           layers: [bike, streets]
        });
 
-       var dmap = L.map('dMap',{
-          center: [lat, lng],
-          zoom:level,
-          layers: [bike, streets]
-       });
+       if(!dmap){
+         dmap = L.map('dMap',{
+            center: [lat, lng],
+            zoom:level,
+            layers: [bike, streets]
+         });
+       }else{
+         dmap.setView(new L.LatLng(lat, lng), level);
+       }
 
        var baseMaps = {
             "Bike": bike,
