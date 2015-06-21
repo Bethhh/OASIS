@@ -78,7 +78,15 @@
 
   <div id="container">
        <div id="map"></div>
-       <div id="description"></div>
+       <div id="description">
+          <div id="dMap">
+          </div>
+          <div id="chart">
+          </div>
+          <div id="sampleImage">
+            <img src="ph.gif"></img>
+          </div>
+       </div>
   </div>
     
 <script>
