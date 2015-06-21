@@ -303,15 +303,15 @@
 
           var div = document.createElement("div");
           div.setAttribute("id", "popup");
-          div.parentNode = document.getElementById("map");
-          console.log(div);
-      
+          //div.parentNode = document.getElementById("map");
+          //console.log(div);
+
 
           div.style.width = pw + "px";
           div.style.height = ph + "px";
           div.style.top = currY + "px";
           div.style.left = currX + "px";
-          document.body.appendChild(div);
+          document.getElementById("map").appendChild(div);
 
           getOSM(evt.target.attributes.lat.value, evt.target.attributes.lng.value, 15);//level);
           //getOSM(31.2, 121.5, 12);//SH is right
