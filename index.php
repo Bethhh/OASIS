@@ -55,7 +55,7 @@
     }
     .popup {
       position: absolute;
-      z-index: 100;
+      z-index: 1;
       background-color: white;
     }
     /*svg:active {
@@ -339,9 +339,6 @@
 
           var div = document.createElement("div");
           div.setAttribute("id", "popup");
-          //div.parentNode = document.getElementById("map");
-          //console.log(div);
-
 
           div.style.width = pw + "px";
           div.style.height = ph + "px";
