@@ -56,7 +56,7 @@
       stroke-width: 2.5px;
     }*/
 
-    image { 
+    .tiles simage { 
       margin:0px 
     }
 </style>
@@ -201,6 +201,7 @@
             .attr("xlink:href", function(d) { return "http://" + ["a", "b", "c", "d"][Math.random() * 4 | 0] + ".tiles.mapbox.com/v3/mapbox.natural-earth-2/" + d[2] + "/" + d[0] + "/" + d[1] + ".png"; })
             .attr("width", Math.round(tiles.scale))
             .attr("height", Math.round(tiles.scale))
+            .attr("class", "tiles")
             .attr("x", function(d) { return Math.round((d[0] + tiles.translate[0]) * tiles.scale); })
             .attr("y", function(d) { return Math.round((d[1] + tiles.translate[1]) * tiles.scale); });
 
