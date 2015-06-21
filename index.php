@@ -21,10 +21,15 @@
  
     body{
     }
+    #container {
+      width:1500px;
+      height: 800px;
+    }
     #map {
       position: absolute;
       z-index: 0;
       margin: 0;
+      float:left;
     }
     .popup {
       position: absolute;
@@ -58,13 +63,12 @@
       stroke-width: 2.5px;
     }*/
 
-    .tiles image { 
+    .tiles { 
       margin: 0px;
       pointer-events: none;
       position: absolute;
       width: 256px;
       height: 256px;
-
     }
 </style>
  
@@ -72,8 +76,10 @@
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
+  <div id="container">
        <div id="map"></div>
-
+       <div id="description"></div>
+  </div>
     
 <script>
 
@@ -98,8 +104,8 @@
     var first_layer = 'd3_world_borders';
      
     var sql = new cartodb.SQL({ user: 'viz2', format: 'geojson', dp: 5});
-    var width = 1200,                  //svg/map width and height
-        height = 750;
+    var width = 1100,                  //svg/map width and height
+        height = 730;
 
     var projection = d3.geo.mercator()       
         .center([0, 60])              //The center of the map (more land is possible)
