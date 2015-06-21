@@ -200,13 +200,12 @@
             zoom:level-2,
             layers: [bike, streets]
          });
-
-         L.control.layers(baseMaps, overlayMaps).addTo(dmap);
        }else{
          dmap.setView(new L.LatLng(lat, lng), level-2);
-         dmap.clearLayers();
-         L.control.layers(baseMaps, overlayMaps).addTo(dmap);
+         dmap.clearLayers();       
        }
+
+       L.control.layers(baseMaps, overlayMaps).addTo(dmap);
 
     }
 
