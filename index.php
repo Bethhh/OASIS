@@ -51,7 +51,7 @@
       margin: 0px;
       padding:0px;
       width: 400px;
-      height:300px;
+      height:400px;
     }
     .popup {
       position: absolute;
@@ -179,7 +179,7 @@
           layers: [bike, streets]
        });
 
-       var map = L.map('dMap',{
+       var dmap = L.map('dMap',{
           center: [lat, lng],
           zoom:level,
           layers: [bike, streets]
@@ -193,6 +193,8 @@
        var overlayMaps = {
             "Points": points
        };
+
+       L.control.layers(baseMaps, overlayMaps).addTo(dmap);
        L.control.layers(baseMaps, overlayMaps).addTo(map);
 
     }
