@@ -268,7 +268,8 @@
 
        var baseMaps = {
             "Bike": bike,
-            "Streets": streets
+            "Streets": streets,
+            "HeatMap":heatmapLayer
        };
 
        var overlayMaps = {
