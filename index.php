@@ -81,7 +81,7 @@
     .tiles { 
       margin: 0px;
       pointer-events: none;
-      position: relative;
+      position: absolute;
       width: 256px;
       height: 256px;
     }
@@ -131,7 +131,7 @@
         height = 700;
 
     var projection = d3.geo.mercator()       
-        .center([0, 60])              //The center of the map (more land is possible)
+        .center([-5, 60])              //The center of the map (more land is possible)
         .scale(160);                  //Initial zoom of the map
     var country;
     var defs;
