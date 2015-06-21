@@ -193,17 +193,6 @@
        L.control.layers(baseMaps, overlayMaps).addTo(map);
 
 
-       if(!dmap){
-         dmap = L.map('dMap',{
-            center: [lat, lng],
-            zoom:level-2,
-            layers: [bike, streets]
-         });
-       }else{
-         dmap.setView(new L.LatLng(lat, lng), level-2);
-         dmap.clearLayers();       
-       }
-       L.control.layers(baseMaps, overlayMaps).addTo(dmap);
 
 
     }
@@ -354,11 +343,14 @@
           //getOSM(73,127,15);//Lena river
           //getOSM(40.7127, -74.0059,15);//NY  north, east
 
-          $( "#popup" ).mouseleave(function() {
-            viewing = false;
-          });
-        }//viewing   
+
+        }//viewing  
+
     }//circle clicked
+
+    $( "#popup" ).mouseleave(function() {
+      viewing = false;
+    });
 
 </script>
 
