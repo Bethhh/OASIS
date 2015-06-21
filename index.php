@@ -180,15 +180,7 @@
           layers: [bike, streets]
        });
 
-       if(!dmap){
-         dmap = L.map('dMap',{
-            center: [lat, lng],
-            zoom:level,
-            layers: [bike, streets]
-         });
-       }else{
-         dmap.setView(new L.LatLng(lat, lng), level);
-       }
+
 
        var baseMaps = {
             "Bike": bike,
@@ -199,8 +191,20 @@
             "Points": points
        };
 
-       L.control.layers(baseMaps, overlayMaps).addTo(dmap);
+
        L.control.layers(baseMaps, overlayMaps).addTo(map);
+
+       if(!dmap){
+         dmap = L.map('dMap',{
+            center: [lat, lng],
+            zoom:level-2,
+            layers: [bike, streets]
+         });
+
+         L.control.layers(baseMaps, overlayMaps).addTo(dmap);
+       }else{
+         dmap.setView(new L.LatLng(lat, lng), level-2);
+       }
 
     }
 
