@@ -194,6 +194,7 @@
             var p = L.marker([lats[k], lngs[k]]).bindPopup("Here");
             points2.push(p);
          }
+         console.log(points);
          dmap = L.map('dMap',{
             center: [lat, lng],
             zoom:level-2,
