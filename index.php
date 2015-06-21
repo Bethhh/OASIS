@@ -35,14 +35,14 @@
       float:left;
     }
     #description {
-      width:400px;
+      width:500px;
       height:700px;
       margin:0px;
       padding:0px;
       float:left;
     }
     #dMap, #chart, #sampleImage {
-      width:400px;
+      width:500px;
       margin:0px;
       height:0px;
     }
@@ -127,7 +127,7 @@
     var first_layer = 'd3_world_borders';
      
     var sql = new cartodb.SQL({ user: 'viz2', format: 'geojson', dp: 5});
-    var width = 1100,                  //svg/map width and height
+    var width = 1000,                  //svg/map width and height
         height = 700;
 
     var projection = d3.geo.mercator()       
