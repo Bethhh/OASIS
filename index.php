@@ -337,12 +337,13 @@
           .style("stroke-opacity", 1e-6)
           .remove()
 
-        if(first){
-          lats.push(c.geometry.coordinates[1]);
-          lngs.push(c.geometry.coordinates[0]);
-        }
+        //if(first){
+        //  lats.push(c.geometry.coordinates[1]);
+        //  lngs.push(c.geometry.coordinates[0]);
+        //}
+        lats.push(earthquakes[i]);
 
-        setTimeout(quake, 400);
+        setTimeout(quake, 200);
 
 
       //console.log("c=", c.geometry.coordinates);
