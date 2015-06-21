@@ -144,7 +144,6 @@
     var defs;
     var dmap;
     var layerGroup;
-    var overlayMaps2;
 
     
      
@@ -181,6 +180,10 @@
             "Streets": streets2
        };
 
+       var overlayMaps2 = {
+            "Points": points2
+       };
+
        if(!dmap){
          dmap = L.map('dMap',{
             center: [lat, lng],
@@ -189,17 +192,11 @@
          });
        }else{
          dmap.setView(new L.LatLng(lat, lng), level-2);
-         L.control.removeLayer(overlayMaps2);
          //dmap.layers.clearLayers(); 
          //layerGroup.clearLayers();      
        }
-
-       overlayMaps2 = {
-            "Points": points2
-       };
-
-
-       L.control.layers(baseMaps2, overlayMaps2).addTo(dmap);
+       //layerGroup = L.control.layers(baseMaps2, overlayMaps2)
+       //layerGroup.addTo(dmap);
 
 
       //small
