@@ -212,7 +212,8 @@
 
        var baseMaps2 = {
             "Bike": bike2,
-            "Streets": streets2
+            "Streets": streets2,
+            "HeatMap":heatmapLayer
        };
 
        
