@@ -23,7 +23,7 @@
     }
     #container {
       width:1500px;
-      height: 800px;
+      height: 700px;
       margin:0px;
       padding:0px;
     }
@@ -33,6 +33,18 @@
       margin: 0px;
       padding:0px;
       float:left;
+    }
+    #description {
+      width:400px;
+      height:700px;
+      margin:0px;
+      padding:0px;
+      float:left;
+    }
+    #dMap, #chart, #sampleImage {
+      width:400px;
+      margin:0px;
+      height:0px;
     }
     .popup {
       position: absolute;
@@ -116,7 +128,7 @@
      
     var sql = new cartodb.SQL({ user: 'viz2', format: 'geojson', dp: 5});
     var width = 1100,                  //svg/map width and height
-        height = 730;
+        height = 700;
 
     var projection = d3.geo.mercator()       
         .center([0, 60])              //The center of the map (more land is possible)
