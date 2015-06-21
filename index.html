@@ -101,7 +101,7 @@
     
      
     function getOSM(lat, lng, level){
-       //console.log("lat="+ lat + " lng=" + lng);
+       console.log("lat="+ lat + " lng=" + lng);
 
 
        var mapboxURL = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}';
@@ -145,6 +145,7 @@
        };
        L.control.layers(baseMaps, overlayMaps).addTo(map);
 
+
     }
 
  
@@ -186,15 +187,15 @@
             .datum(topojson.feature(topology, topology.objects.countries))
             .attr("d", path);
 
-      //  svg.append("clipPath")
-        //    .attr("id", "clip")
-          svg.append("use")
+        svg.append("clipPath")
+            .attr("id", "clip")
+          .append("use")
             .attr("xlink:href", "#countries");
 
 
         svg.append("g")
             .attr("id", "first_layer")
-            //.attr("clip-path", "url(#clip)")
+            .attr("clip-path", "url(#clip)")
           .selectAll("image")
             .data(tiles)
           .enter().append("image")
