@@ -172,8 +172,8 @@
           accessToken: ac
        });
 
-       var data_point2 = L.marker([lat, lng]).bindPopup("Here");
-       var points2 = L.layerGroup([data_point2]);
+       //var data_point2 = L.marker([lat, lng]).bindPopup("Here");
+       //var points2 = L.layerGroup([data_point2]);
 
        var baseMaps2 = {
             "Bike": bike2,
@@ -181,7 +181,7 @@
        };
 
        var overlayMaps2 = {
-            "Points": points2
+            "Points": points
        };
 
        if(!dmap){
@@ -192,7 +192,7 @@
          });
        }else{
          dmap.setView(new L.LatLng(lat, lng), level-2);
-         dmap.layers.clearLayers(); 
+         //dmap.layers.clearLayers(); 
          //layerGroup.clearLayers();      
        }
        layerGroup = L.control.layers(baseMaps2, overlayMaps2)
@@ -214,8 +214,8 @@
           accessToken: ac
        });
 
-       var data_point = L.marker([lat, lng]).bindPopup("Here");
-       var points = L.layerGroup([data_point]);
+       //var data_point = L.marker([lat, lng]).bindPopup("Here");
+       //var t_points = L.layerGroup([data_point]);
 
        var baseMaps = {
             "Bike": bike,
@@ -295,15 +295,21 @@
             .attr("class", "stroke");
 
     });
-
+  
+    var i = 0;
+    var points;
     var earthquakes;
     sql.execute("SELECT the_geom, quakedate, magnitude FROM {{table_name}} WHERE the_geom IS NOT NULL ORDER BY quakedate ASC", {table_name: 'earthquaked3'})
       .done(function(collection) {
         earthquakes = collection.features;
+        var p = L.marker([earthquakes[i].geometry.coordinates[1], earthquakes[i].geometry.coordinates[0]]).bindPopup("Here");
+        points.push(p);
         quake();
       });
+
+    
  
-    var i = 0;
+    
     function quake() {
       var c = earthquakes[i];
       var h=svg.append("circle")
@@ -325,6 +331,8 @@
           .style("stroke-opacity", 1e-6)
           .remove()
         setTimeout(quake, 200);
+
+
 
       //console.log("c=", c.geometry.coordinates);
       //console.log("x=", projection(c.geometry.coordinates)[0]);
