@@ -296,7 +296,7 @@
 
 
 <?php
-echo "Test map!";
+//echo "Test map!";
 ?>
     
 
