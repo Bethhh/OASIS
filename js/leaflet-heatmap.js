@@ -6,19 +6,13 @@
 * and the Beerware (http://en.wikipedia.org/wiki/Beerware) license.
 */
 
-// Leaflet < 0.8 compatibility
-if (typeof L.Layer === 'undefined') {
-  L.Layer = L.Class;
-}
-
-var HeatmapOverlay = L.Layer.extend({
+var HeatmapOverlay = L.Class.extend({
 
   initialize: function (config) {
     this.cfg = config;
     this._el = L.DomUtil.create('div', 'leaflet-zoom-hide');
     this._data = [];
     this._max = 1;
-    this._min = 0;
     this.cfg.container = this._el;
   },
 
@@ -79,11 +73,10 @@ var HeatmapOverlay = L.Layer.extend({
       return;
     }
 
-    var generatedData = { max: this._max, min: this._min };
+    var generatedData = { max: this._max };
     var latLngPoints = [];
     var radiusMultiplier = this.cfg.scaleRadius ? scale : 1;
     var localMax = 0;
-    var localMin = 0;
     var valueField = this.cfg.valueField;
     var len = this._data.length;
   
@@ -98,8 +91,9 @@ var HeatmapOverlay = L.Layer.extend({
         continue;
       }
       // local max is the maximum within current bounds
-      localMax = Math.max(value, localMax);
-      localMin = Math.min(value, localMin);
+      if (value > localMax) {
+        localMax = value;
+      }
 
       var point = this._map.latLngToContainerPoint(latlng);
       var latlngPoint = { x: Math.round(point.x), y: Math.round(point.y) };
@@ -117,7 +111,6 @@ var HeatmapOverlay = L.Layer.extend({
     }
     if (this.cfg.useLocalExtrema) {
       generatedData.max = localMax;
-      generatedData.min = localMin;
     }
 
     generatedData.data = latLngPoints;
@@ -126,7 +119,6 @@ var HeatmapOverlay = L.Layer.extend({
   },
   setData: function(data) {
     this._max = data.max || this._max;
-    this._min = data.min || this._min;
     var latField = this.cfg.latField || 'lat';
     var lngField = this.cfg.lngField || 'lng';
     var valueField = this.cfg.valueField || 'value';
@@ -167,7 +159,6 @@ var HeatmapOverlay = L.Layer.extend({
       
       dataObj[valueField] = entry[valueField];
       this._max = Math.max(this._max, dataObj[valueField]);
-      this._min = Math.min(this._min, dataObj[valueField]);
 
       if (entry.radius) {
         dataObj.radius = entry.radius;
