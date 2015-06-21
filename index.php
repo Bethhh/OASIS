@@ -190,7 +190,7 @@
        var mapid_bike = 'bethshi.c9cd002c';
        var mapid_streets = 'bethshi.m99m2dgg';
 
-      var heatmapLayer = new HeatmapOverlay(cfg);
+       var heatmapLayer = new HeatmapOverlay(cfg);
  
 
 
@@ -215,8 +215,8 @@
 
        var baseMaps2 = {
             "Bike": bike2,
-            "Streets": streets2,
-            "HeatMap":heatmapLayer
+            "Streets": streets2//,
+            //"HeatMap":heatmapLayer
        };
 
        
@@ -268,8 +268,8 @@
 
        var baseMaps = {
             "Bike": bike,
-            "Streets": streets,
-            "HeatMap":heatmapLayer
+            "Streets": streets//,
+            //"HeatMap":heatmapLayer
        };
 
        var overlayMaps = {
