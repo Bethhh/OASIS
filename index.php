@@ -336,6 +336,12 @@
           .style("fill-opacity", 1e-6)
           .style("stroke-opacity", 1e-6)
           .remove()
+
+        if(first){
+          lats.push(c.geometry.coordinates[1]);
+          lngs.push(c.geometry.coordinates[0]);
+        }
+
         setTimeout(quake, 200);
 
 
@@ -357,10 +363,6 @@
 
 
 
-      if(first){
-        lats.push(c.geometry.coordinates[1]);
-        lngs.push(c.geometry.coordinates[0]);
-      }
 
       i++;
       if (earthquakes.length==i) {
