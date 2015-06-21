@@ -88,8 +88,7 @@
     var first_layer = 'd3_world_borders';
      
     var sql = new cartodb.SQL({ user: 'viz2', format: 'geojson', dp: 5});
-
-    var width = 1100,                  //svg/map width and height
+    var width = 1000,                  //svg/map width and height
         height = 600;
 
     var projection = d3.geo.mercator()       
@@ -102,7 +101,6 @@
      
     function getOSM(lat, lng, level){
        //console.log("lat="+ lat + " lng=" + lng);
-
 
        var mapboxURL = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}';
        var ac = 'pk.eyJ1IjoiYmV0aHNoaSIsImEiOiJjOTg3MmVmMThjNDA3ZWNlZGFiMzQxYzVmMWE5MTA0YSJ9.m1VNax_7vNjkZVXuUY69Gw';
@@ -272,13 +270,11 @@
           var pw = 300;
           var ph = 200;
           var gap = 50;
-          //console.log("hey");
-          //console.log(evt);
 
           //currX = evt.clientX - pw/2;
-          currX = evt.clientX - 50;
-          currY = evt.clientY - 50;
           //currY = evt.clientY - ph/2;
+          currX = evt.clientX - gap;
+          currY = evt.clientY - gap;
 
           var div = document.createElement("div");
           div.setAttribute("id", "popup");
@@ -288,7 +284,6 @@
           div.style.top = currY + "px";
           div.style.left = currX + "px";
           document.body.appendChild(div);
-          //console.log(div);
 
           getOSM(evt.target.attributes.lat.value, evt.target.attributes.lng.value, 15);//level);
           //getOSM(31.2, 121.5, 12);//SH is right
@@ -298,9 +293,8 @@
           $( "#popup" ).mouseleave(function() {
             viewing = false;
           });
-        }
-      
-     }
+        }//viewing   
+    }//circle clicked
 
 </script>
 
