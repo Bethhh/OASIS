@@ -346,8 +346,8 @@
 
     });
 
-    var lats;
-    var lngs;
+    var lats = [];
+    var lngs = [];
     var earthquakes;
     sql.execute("SELECT the_geom, quakedate, magnitude FROM {{table_name}} WHERE the_geom IS NOT NULL ORDER BY quakedate ASC", {table_name: 'earthquaked3'})
       .done(function(collection) {
