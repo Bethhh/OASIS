@@ -24,6 +24,7 @@
     #container {
       width:1500px;
       height: 800px;
+      margin:0px;
     }
     #map {
       position: absolute;
@@ -179,7 +180,7 @@
         .scale(projection.scale() * 2 * Math.PI)
         .translate(projection([0, 0]))
         .zoomDelta((window.devicePixelRatio || 1) - .5);
-//
+
   //  function redraw() {
     //  svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
     //}
