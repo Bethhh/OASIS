@@ -182,8 +182,6 @@
             "Points": points
        };
 
-
-
        //var map = L.map('popup').setView([lat, lng], 13);
        var map = L.map('popup',{
           center: [lat, lng],
@@ -204,7 +202,6 @@
        }
        L.control.layers(baseMaps, overlayMaps).addTo(dmap);
 
-
     }
 
  
@@ -217,11 +214,6 @@
         .scale(projection.scale() * 2 * Math.PI)
         .translate(projection([0, 0]))
         .zoomDelta((window.devicePixelRatio || 1) - .5);
-
-  //  function redraw() {
-    //  svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
-    //}
-    
 
     var svg = d3.select("#map").append("svg")
        // .call(d3.behavior.zoom()
@@ -345,8 +337,6 @@
           div.style.top = currY + "px";
           div.style.left = currX + "px";
           div.style.position = "absolute";
-
-
       
           document.getElementById("map").appendChild(div);
 
