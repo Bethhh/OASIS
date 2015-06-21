@@ -310,10 +310,8 @@
       .done(function(collection) {
         earthquakes = collection.features;
         quake();
-      });
-
-    var first = true;
- 
+        count();
+      }); 
   
     var i = 0;    
     function quake() {
@@ -336,12 +334,6 @@
           .style("fill-opacity", 1e-6)
           .style("stroke-opacity", 1e-6)
           .remove()
-
-        //if(first){
-        //  lats.push(c.geometry.coordinates[1]);
-        //  lngs.push(c.geometry.coordinates[0]);
-        //}
-        lats.push(earthquakes[i]);
 
         setTimeout(quake, 200);
 
@@ -368,8 +360,14 @@
       i++;
       if (earthquakes.length==i) {
         i = 0;
-        first = false;
       }
+    }
+
+    var j = 0;
+    function count(){
+        var c = earthquakes[j];
+        lats.push(c.geometry.coordinates[1]);
+        lngs.push(c.geometry.coordinates[0]);
     }
 
     var viewing = false;
