@@ -92,7 +92,7 @@
      
     var sql = new cartodb.SQL({ user: 'viz2', format: 'geojson', dp: 5});
     var width = 1200,                  //svg/map width and height
-        height = 800;
+        height = 750;
 
     var projection = d3.geo.mercator()       
         .center([0, 60])              //The center of the map (more land is possible)
