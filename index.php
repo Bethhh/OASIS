@@ -192,11 +192,11 @@
          });
        }else{
          dmap.setView(new L.LatLng(lat, lng), level-2);
-         //dmap.layers.clearLayers(); 
+         dmap.layers.clearLayers(); 
          //layerGroup.clearLayers();      
        }
-       //layerGroup = L.control.layers(baseMaps2, overlayMaps2)
-       //layerGroup.addTo(dmap);
+       layerGroup = L.control.layers(baseMaps2, overlayMaps2)
+       layerGroup.addTo(dmap);
 
 
       //small
