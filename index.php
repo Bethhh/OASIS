@@ -172,8 +172,8 @@
           accessToken: ac
        });
 
-       var data_point2 = L.marker([lat, lng]).bindPopup("Here");
-       var points = L.layerGroup([data_point2]);
+       //var data_point2 = L.marker([lat, lng]).bindPopup("Here");
+       //var points = L.layerGroup([data_point2]);
 
 
        var baseMaps2 = {
@@ -187,6 +187,7 @@
 
        if(!dmap){
          var k = 0;
+         var points;
          for(k=0; k<lats.length; k++){
             var p = L.marker([lats[k], lngs[k]]).bindPopup("Here");
             points.push(p);
@@ -221,8 +222,8 @@
           accessToken: ac
        });
 
-       //var data_point = L.marker([lat, lng]).bindPopup("Here");
-       //var t_points = L.layerGroup([data_point]);
+       var data_point = L.marker([lat, lng]).bindPopup("Here");
+       var points = L.layerGroup([data_point]);
 
        var baseMaps = {
             "Bike": bike,
