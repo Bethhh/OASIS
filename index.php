@@ -174,6 +174,11 @@
 
        //var data_point2 = L.marker([lat, lng]).bindPopup("Here");
        //var points2 = L.layerGroup([data_point2]);
+       var k = 0;
+       for(k=0; k<lats.length; k++){
+          var p = L.marker([lats[k], lngs[k]]).bindPopup("Here");
+          points.push(p);
+       }
 
        var baseMaps2 = {
             "Bike": bike2,
@@ -190,13 +195,14 @@
             zoom:level-2,
             layers: [bike2, streets2]
          });
+         layerGroup = L.control.layers(baseMaps2, overlayMaps2)
+         layerGroup.addTo(dmap);
        }else{
          dmap.setView(new L.LatLng(lat, lng), level-2);
          //dmap.layers.clearLayers(); 
          //layerGroup.clearLayers();      
        }
-       layerGroup = L.control.layers(baseMaps2, overlayMaps2)
-       layerGroup.addTo(dmap);
+
 
 
       //small
@@ -295,9 +301,9 @@
             .attr("class", "stroke");
 
     });
-  
-    var i = 0;
-    var points;
+
+    var lats;
+    var lngs;
     var earthquakes;
     sql.execute("SELECT the_geom, quakedate, magnitude FROM {{table_name}} WHERE the_geom IS NOT NULL ORDER BY quakedate ASC", {table_name: 'earthquaked3'})
       .done(function(collection) {
@@ -305,9 +311,16 @@
         quake();
       });
 
-    
+    var j = 0;
+    for(j = 0; j <earthquakes.length; j++){
+
+        lats.push(c.geometry.coordinates[1]);
+        lngs.push(c.geometry.coordinates[0]);
+
+    }
  
-    
+  
+    var i = 0;    
     function quake() {
       var c = earthquakes[i];
       var h=svg.append("circle")
@@ -330,8 +343,6 @@
           .remove()
         setTimeout(quake, 200);
 
-        var p = L.marker([c.geometry.coordinates[1], c.geometry.coordinates[0]]).bindPopup("Here");
-        points.push(p);
 
       //console.log("c=", c.geometry.coordinates);
       //console.log("x=", projection(c.geometry.coordinates)[0]);
