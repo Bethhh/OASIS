@@ -157,6 +157,49 @@
        var mapid_bike = 'bethshi.c9cd002c';
        var mapid_streets = 'bethshi.m99m2dgg';
 
+       //large
+       var bike2 = L.tileLayer(mapboxURL, {
+          attribution: mapattr,
+          maxZoom: 18,
+          id: mapid_bike,
+          accessToken: ac
+       });
+
+       var streets2 = L.tileLayer(mapboxURL, {
+          attribution: mapattr,
+          maxZoom: 18,
+          id: mapid_streets,
+          accessToken: ac
+       });
+
+       var data_point2 = L.marker([lat, lng]).bindPopup("Here");
+       var points2 = L.layerGroup([data_point2]);
+
+       var baseMaps2 = {
+            "Bike": bike2,
+            "Streets": streets2
+       };
+
+       var overlayMaps2 = {
+            "Points": points2
+       };
+
+       if(!dmap){
+         dmap = L.map('dMap',{
+            center: [lat, lng],
+            zoom:level-2,
+            layers: [bike2, streets2]
+         });
+       }else{
+         dmap.setView(new L.LatLng(lat, lng), level-2);
+         //dmap.layers.clearLayers(); 
+         layerGroup.clearLayers();      
+       }
+       layerGroup = L.control.layers(baseMaps2, overlayMaps2)
+       layerGroup.addTo(dmap);
+
+
+      //small
        var bike = L.tileLayer(mapboxURL, {
           attribution: mapattr,
           maxZoom: 18,
@@ -182,21 +225,6 @@
        var overlayMaps = {
             "Points": points
        };
-
-       if(!dmap){
-         dmap = L.map('dMap',{
-            center: [lat, lng],
-            zoom:level-2,
-            layers: [bike, streets]
-         });
-       }else{
-         dmap.setView(new L.LatLng(lat, lng), level-2);
-         //dmap.layers.clearLayers(); 
-         layerGroup.clearLayers();      
-       }
-       layerGroup = L.control.layers(baseMaps, overlayMaps)
-       layerGroup.addTo(dmap);
-
 
        //var map = L.map('popup').setView([lat, lng], 13);
        var map = L.map('popup',{
