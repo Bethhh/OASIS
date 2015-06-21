@@ -25,11 +25,13 @@
       width:1500px;
       height: 800px;
       margin:0px;
+      padding:0px;
     }
     #map {
       position: absolute;
       z-index: 0;
-      margin: 0;
+      margin: 0px;
+      padding:0px;
       float:left;
     }
     .popup {
@@ -301,6 +303,7 @@
 
           var div = document.createElement("div");
           div.setAttribute("id", "popup");
+          div.parentNode = document.getElementById("map");
 
           div.style.width = pw + "px";
           div.style.height = ph + "px";
