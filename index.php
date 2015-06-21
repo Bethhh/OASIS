@@ -173,13 +173,6 @@
        var data_point = L.marker([lat, lng]).bindPopup("Here");
        var points = L.layerGroup([data_point]);
 
-       //var map = L.map('popup').setView([lat, lng], 13);
-       var map = L.map('popup',{
-          center: [lat, lng],
-          zoom:level,
-          layers: [bike, streets]
-       });
-
 
 
        var baseMaps = {
@@ -191,9 +184,6 @@
             "Points": points
        };
 
-
-       L.control.layers(baseMaps, overlayMaps).addTo(map);
-
        if(!dmap){
          dmap = L.map('dMap',{
             center: [lat, lng],
@@ -204,8 +194,18 @@
          dmap.setView(new L.LatLng(lat, lng), level-2);
          dmap.clearLayers();       
        }
-
        L.control.layers(baseMaps, overlayMaps).addTo(dmap);
+
+
+       //var map = L.map('popup').setView([lat, lng], 13);
+       var map = L.map('popup',{
+          center: [lat, lng],
+          zoom:level,
+          layers: [bike, streets]
+       });
+       L.control.layers(baseMaps, overlayMaps).addTo(map);
+
+
 
     }
 
