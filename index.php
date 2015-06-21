@@ -189,7 +189,7 @@
        var mapid_streets = 'bethshi.m99m2dgg';
 
       var heatmapLayer = new HeatmapOverlay(cfg);
-      heatmapLayer.setData(testData);
+ 
 
 
        //large
@@ -283,7 +283,7 @@
        });
        L.control.layers(baseMaps, overlayMaps).addTo(map);
 
-
+       heatmapLayer.setData(testData);
 
 
 
