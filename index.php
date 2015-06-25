@@ -146,11 +146,11 @@
 
 
     //var transformedTestData = { max: testData.max , data: [] },
-    var data = "submissions.json";
-    var database_url= "http://warm-ridge-5036.herokuapp.com"
-    //$.getJSON(database_url, data, function(){console.log("yay")});//Cross Domain need to be handle properly later
+    var data = "distributed_healths.json";
+    var database_url= "https://distributed-health.herokuapp.com/"
+    $.getJSON(database_url, data, function(){console.log("yay")});//Cross Domain need to be handle properly later
 
-    /*$.ajax({
+    $.ajax({
       type: "POST",
       dataType: "jsonp",
       url: database_url,
@@ -159,10 +159,10 @@
     });
 
     function success(data){
-      console.log("Yay");
+      console.log("Yayw");
       console.log(data);
       //console.log(JSON.parse(data));
-    }*/
+    }
 
     var first_layer = 'd3_world_borders';
      
