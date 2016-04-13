@@ -9,8 +9,8 @@
 
     <script src="http://libs.cartocdn.com/cartodb.js/v2/cartodb.js"></script>
     <script>L_DISABLE_3D = true;</script>
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
     <script type="text/javascript" src="./js/leaflet-heatmap.js"></script>
     <script type="text/javascript" src="./js/heatmap.min.js"></script>
 
@@ -37,6 +37,7 @@
       margin: 0px;
       padding:0px;
       float:left;
+      height: 700px;
     }
     #description {
       width:400px;
@@ -146,11 +147,11 @@
 
 
     //var transformedTestData = { max: testData.max , data: [] },
-    var data = "distributed_healths.json";
-    var database_url= "https://distributed-health.herokuapp.com/"
-    $.getJSON(database_url, data, function(){console.log("yay")});//Cross Domain need to be handle properly later
+    //var data = "distributed_healths.json";
+    //var database_url= "https://distributed-health.herokuapp.com/"
+    //$.getJSON(database_url, data, function(){console.log("yay")});//Cross Domain need to be handle properly later
 
-    $.ajax({
+    /*$.ajax({
       type: "POST",
       dataType: "jsonp",
       url: database_url,
@@ -162,7 +163,7 @@
       console.log("Yayw");
       console.log(data);
       //console.log(JSON.parse(data));
-    }
+    }*/
 
     var first_layer = 'd3_world_borders';
      
@@ -173,12 +174,18 @@
     var projection = d3.geo.mercator()       
         .center([-15, 60])              //The center of the map (more land is possible)
         .scale(160);                  //Initial zoom of the map
-    var country;
+    //var country;
     var defs;
     var dmap;
     var layerGroup;
 
-    
+    var map = L.map('map').setView([51.505, -0.09], 13);
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+        maxZoom: 18,
+        id: 'bethshi.m99m2dgg', //change
+        accessToken: 'pk.eyJ1IjoiYmV0aHNoaSIsImEiOiJjOTg3MmVmMThjNDA3ZWNlZGFiMzQxYzVmMWE5MTA0YSJ9.m1VNax_7vNjkZVXuUY69Gw'
+    }).addTo(map);
      
     function getOSM(lat, lng, level){
        //console.log("lat="+ lat + " lng=" + lng);
@@ -294,13 +301,13 @@
  
     
 
-    var path = d3.geo.path()
-        .projection(projection);
+    //var path = d3.geo.path()
+    //    .projection(projection);
 
-    var tile = d3.geo.tile()
-        .scale(projection.scale() * 2 * Math.PI)
-        .translate(projection([0, 0]))
-        .zoomDelta((window.devicePixelRatio || 1) - .5);
+    //var tile = d3.geo.tile()
+      //  .scale(projection.scale() * 2 * Math.PI)
+        //.translate(projection([0, 0]))
+        //.zoomDelta((window.devicePixelRatio || 1) - .5);
 
     var svg = d3.select("#map").append("svg")
        // .call(d3.behavior.zoom()
@@ -309,12 +316,12 @@
         .attr("height", height);
 
     // Background rect
-    svg.append("rect")
+   /* svg.append("rect")
         .attr("width", "100%")
         .attr("height", "100%")
-        .attr("fill", "#000000");//"#3A81B7");
+        .attr("fill", "#000000");//"#3A81B7");*/
 
-    d3.json("./d3/world-50m.json", function(error, topology) {
+    /*d3.json("./d3/world-50m.json", function(error, topology) {
         var tiles = tile();
 
         svg.append("defs");
@@ -347,7 +354,7 @@
             .attr("xlink:href", "#countries")
             .attr("class", "stroke");
 
-    });
+    });*/
 
     var lats = [];
     var lngs = [];
