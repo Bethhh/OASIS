@@ -9,6 +9,7 @@
     <script src="http://libs.cartocdn.com/cartodb.js/v2/cartodb.js"></script>
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
         <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -62,6 +63,11 @@
     .countries :hover {
       fill: orange;
       stroke-width: 2.5px;
+    }
+    .leaflet-marker-icon.profileMarker{
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
     }
 </style>
  
@@ -127,24 +133,33 @@
       //     popupAnchor:  [-1, -69] // point from which the popup should open relative to the iconAnchor
       // });
 
-      var userIcon = L.icon({
-          iconUrl: 'user.png',
-          iconSize:     [30, 35], // size of the icon   20/25
-          iconAnchor:   [15, 60] // point of the icon which will correspond to marker's location  10/40
+      // Current user profile pic (TODO handle profile pic selection)
+      var UserIcon = L.Icon.Default.extend({
+        options: {
+          iconSize:     [32, 32], // size of the icon   20/25
+          iconAnchor:   [15, 60], // point of the icon which will correspond to marker's location  10/40
+          popupAnchor:  [0, -65]
+        }
       });
+      var user_pic = new UserIcon({iconUrl: 'test.png'});
 
+
+      // Extend the default icon to make it bigger
       L.Icon.Big = L.Icon.Default.extend({
           options: {
           iconSize:     [40, 60],
           iconAnchor:   [20, 65], // point of the icon which will correspond to marker's location
-          popupAnchor:  [0, -65] // point from which the popup should open relative to the iconAnchor
+          //popupAnchor:  [0, -65] // point from which the popup should open relative to the iconAnchor
       }});
-
       var bigIcon = new L.Icon.Big();
 
-      L.marker(e.latlng, {icon: bigIcon}).addTo(map_base).bindPopup("You are within " + radius + " meters from this point").openPopup();
-      L.marker(e.latlng, {icon: userIcon}).addTo(map_base).bindPopup("You are within " + radius + " meters from this point").openPopup();
-        
+      // default marker (pinpoint loc)
+      L.marker(e.latlng, {icon: bigIcon}).addTo(map_base);
+      // User profile marker (binds the popup)
+      var u = L.marker(e.latlng, {icon: user_pic}).addTo(map_base).bindPopup("You are within " + radius + " meters from this point").openPopup();
+      
+      // Make user profile pic circular
+      $(u._icon).addClass('profileMarker');
 
       L.circle(e.latlng, radius).addTo(map_base);
     }
@@ -270,8 +285,8 @@
         console.log(evt);
         currX = evt.clientX - pw/2;
         currY = evt.clientY - ph/2;
-        console.log(currX);
-        console.log(currY);
+        //console.log(currX);
+        //console.log(currY);
 
         var div = document.createElement("div");
         div.setAttribute("id", "popup");
