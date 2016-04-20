@@ -117,8 +117,34 @@
       var radius = e.accuracy / 2;
       console.log(e);
 
-      L.marker(e.latlng).addTo(map_base)
-        .bindPopup("You are within " + radius + " meters from this point").openPopup();
+
+      // var userIcon = L.icon({
+      //     iconUrl: 'user.png',
+      //     iconSize:     [60, 70], // size of the icon
+      //     shadowSize:   [70, 70], // size of the shadow
+      //     iconAnchor:   [30, 69], // point of the icon which will correspond to marker's location
+      //     shadowAnchor: [5, 65],  // the same for the shadow
+      //     popupAnchor:  [-1, -69] // point from which the popup should open relative to the iconAnchor
+      // });
+
+      var userIcon = L.icon({
+          iconUrl: 'user.png',
+          iconSize:     [30, 35], // size of the icon   20/25
+          iconAnchor:   [15, 60] // point of the icon which will correspond to marker's location  10/40
+      });
+
+      L.Icon.Big = L.Icon.Default.extend({
+          options: {
+          iconSize:     [40, 60],
+          iconAnchor:   [20, 65], // point of the icon which will correspond to marker's location
+          popupAnchor:  [0, -65] // point from which the popup should open relative to the iconAnchor
+      }});
+
+      var bigIcon = new L.Icon.Big();
+
+      L.marker(e.latlng, {icon: bigIcon}).addTo(map_base).bindPopup("You are within " + radius + " meters from this point").openPopup();
+      L.marker(e.latlng, {icon: userIcon}).addTo(map_base).bindPopup("You are within " + radius + " meters from this point").openPopup();
+        
 
       L.circle(e.latlng, radius).addTo(map_base);
     }
