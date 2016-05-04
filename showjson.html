@@ -26,21 +26,19 @@ var url="getjson.php";
 $("#jsondata tbody").html("");
 $.getJSON(url,function(data){
 	console.log(data);
-$.each(data.geos, function(i,user){
-	console.log(user);
-var newRow =
-"<tr>"
-+"<td>"+user.latitude+"</td>"
-+"<td>"+user.longitude+"</td>"
-+"<td>"+user.time+"</td>"
-+"</tr>" ;
-$(newRow).appendTo("#jsondata tbody");
-});
+	$.each(data.geos, function(i,geo){
+		console.log(geo);
+		var newRow =
+		"<tr>"
+		+"<td>"+geo.latitude+"</td>"
+		+"<td>"+geo.longitude+"</td>"
+		+"<td>"+geo.time+"</td>"
+		+"</tr>" ;
+		$(newRow).appendTo("#jsondata tbody");
+	});
 });
 });
 
 </script>
-<p style="text-align: justify;">
-</p>
 </body>
 </html>
