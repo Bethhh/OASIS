@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>OASIS Map</title>
+    
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+</head>
+<body>
+
+
+<table class="mGrid" id="jsondata">
+<thead>
+<th>Lat</th>
+<th>Long</th>
+<th>Time</th>
+</thead>
+<tbody></tbody>
+</table>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+var url="getjson.php";
+$("#jsondata tbody").html("");
+$.getJSON(url,function(data){
+	console.log(data);
+$.each(data.geos, function(i,user){
+	console.log(user);
+var newRow =
+"<tr>"
++"<td>"+user.latitude+"</td>"
++"<td>"+user.longitude+"</td>"
++"<td>"+user.time+"</td>"
++"</tr>" ;
+$(newRow).appendTo("#jsondata tbody");
+});
+});
+});
+
+</script>
+<p style="text-align: justify;">
+</p>
+</body>
+</html>
