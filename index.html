@@ -92,6 +92,8 @@
     }
      
     var sql = new cartodb.SQL({ user: 'viz2', format: 'geojson', dp: 5});
+    console.log("sql");
+    console.log(sql);
 
     var width = 1100,                  //svg/map width and height
         height = 600;
@@ -228,15 +230,37 @@
                 //.call(d3.behavior.zoom());
                 //.on("zoom", redraw));
     var g = svg.append("g");
- 
+
+    //var earthquakes;
+    // sql.execute("SELECT the_geom, quakedate, magnitude FROM {{table_name}} WHERE the_geom IS NOT NULL ORDER BY quakedate ASC", {table_name: 'earthquaked3'})
+    //   .done(function(collection) {
+    //     earthquakes = collection.features;
+    //     console.log(collection);
+    //     quake();
+    //   });
 
 
     var earthquakes;
-    sql.execute("SELECT the_geom, quakedate, magnitude FROM {{table_name}} WHERE the_geom IS NOT NULL ORDER BY quakedate ASC", {table_name: 'earthquaked3'})
-      .done(function(collection) {
-        earthquakes = collection.features;
+    var geojson = {};
+    $(document).ready(function(){
+      var url="http://52.53.177.54/getgeonumjson.php?num=100";
+      $.getJSON(url,function(data){
+        geojson["features"] = [];
+        $.each(data, function(i,geo){
+          var item = {};
+          item["geometry"] = {};
+          item["geometry"]["type"] = "Point";
+          item["geometry"]["coordinates"] = [Number(geo.longitude), Number(geo.lat)];
+          item["properties"] = {};
+          item["properties"]["uploadtime"] = geo.time;
+          geojson["features"][i] = item;
+        });
+        console.log(geojson);
+        earthquakes = geojson.features;
         quake();
       });
+    });
+
  
     var i = 0;
     function quake() {
@@ -256,11 +280,13 @@
         .transition()
           .duration(4000)
           .ease(Math.sqrt)
-          .attr("r", c.properties.magnitude * 10)
+          .attr("r", 1 * 10) //c.properties.magnitude
           .style("fill-opacity", 1e-6)
           .style("stroke-opacity", 1e-6)
           .remove()
         setTimeout(quake, 200);
+      //console.log("c=", c.geometry.coordinates[0]);
+      //console.log("c=", c.geometry.coordinates[1]);
 
       ///console.log("c=", c.geometry.coordinates);
       //console.log("x=", projection(c.geometry.coordinates)[0]);
