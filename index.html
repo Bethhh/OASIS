@@ -302,9 +302,28 @@
       if (earthquakes.length==i) i = 0;
     }
     // TODO click other place => remove pop up
+    // $("body").on('click', function(evt){
+    //       evt.stopPropagation();
+    //       $('#popup').remove();
+    //       $('#invisibleDiv').remove();
+    // });
+
+    // Remove popup when clicking outside
+    $(document).mouseup(function (e) {
+       var popup = $("#popup");
+       if (!$('#open').is(e.target) && !popup.is(e.target) && popup.has(e.target).length == 0) {
+           popup.remove();
+       }
+    });
+    
+    // document.getElementById('invisibleDiv').onclick = function()
+    // {
+    //     document.getElementById('popup').style.display = 'none'; 
+    // }
 
     function circle_clicked(evt){
         $('#popup').remove();
+        $('#invisibleDiv').remove();
 
         var pw = 400;
         var ph = 300;
@@ -313,6 +332,13 @@
         currY = evt.clientY - ph/2;
         //console.log(currX);
         //console.log(currY);
+        // var invisibleDiv = document.createElement("div");
+        // invisibleDiv.setAttribute("id", "invisibleDiv");
+        // invisibleDiv.style.height = "100vh";
+        // invisibleDiv.style.width = "100vw";
+        // document.body.appendChild(invisibleDiv);
+
+
 
         var div = document.createElement("div");
         div.setAttribute("id", "popup");
