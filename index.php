@@ -11,6 +11,9 @@
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
+    <script type="text/javascript" src="./js/leaflet-heatmap.js"></script>
+    <script type="text/javascript" src="./js/heatmap.min.js"></script>
+
         <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -79,11 +82,26 @@
     
 <script>
 
-    ////var data = "submissions.json";
-    ////var database_url= "http://warm-ridge-5036.herokuapp.com"
-    //$.getJSON(database_url, data, function(){console.log("yay")});//Cross Domain need to be handle properly later
+    var cfg = {
+      // radius should be small ONLY if scaleRadius is true (or small radius is intended)
+      // if scaleRadius is false it will be the constant radius used in pixels
+      "radius": 5,
+      "maxOpacity": .8, 
+      // scales the radius based on map zoom
+      "scaleRadius": true, 
+      // if set to false the heatmap uses the global maximum for colorization
+      // if activated: uses the data maximum within the current map boundaries 
+      //   (there will always be a red spot with useLocalExtremas true)
+      "useLocalExtrema": true,
+      // which field name in your data represents the latitude - default "lat"
+      latField: 'lat',
+      // which field name in your data represents the longitude - default "lng"
+      lngField: 'longitude',
+      // which field name in your data represents the data value - default "value"
+      valueField: 'ph'
+    };
 
-    //  s
+
 
     function success(data){
       console.log("Yay");
@@ -91,7 +109,9 @@
       //console.log(JSON.parse(data));
     }
      
-    var sql = new cartodb.SQL({ user: 'viz2', format: 'geojson', dp: 5});
+    //var sql = new cartodb.SQL({ user: 'viz2', format: 'geojson', dp: 5});
+    //console.log("sql");
+    //console.log(sql);
 
     var width = 1100,                  //svg/map width and height
         height = 600;
@@ -108,6 +128,8 @@
     var init_zoom = 13;
 
     var map_base = L.map('map').setView([-41.2858, 174.7868], init_zoom); //svg need setView to work
+
+    var heatmapLayer = new HeatmapOverlay(cfg);
 
     L.tileLayer(mapboxURL, {
       attribution: mapattr,
@@ -197,7 +219,7 @@
        var map = L.map('popup',{
           center: [lat, lng],
           zoom:level,
-          layers: [bike, streets]
+          layers: [bike, streets, heatmapLayer]
        });
 
        var baseMaps = {
@@ -209,6 +231,7 @@
             "Points": points
        };
        L.control.layers(baseMaps, overlayMaps).addTo(map);
+       heatmapLayer.setData(testData);
 
     }
 
@@ -228,15 +251,60 @@
                 //.call(d3.behavior.zoom());
                 //.on("zoom", redraw));
     var g = svg.append("g");
- 
+
+    //var earthquakes;
+    // sql.execute("SELECT the_geom, quakedate, magnitude FROM {{table_name}} WHERE the_geom IS NOT NULL ORDER BY quakedate ASC", {table_name: 'earthquaked3'})
+    //   .done(function(collection) {
+    //     earthquakes = collection.features;
+    //     console.log(collection);
+    //     quake();
+    //   });
 
 
     var earthquakes;
-    sql.execute("SELECT the_geom, quakedate, magnitude FROM {{table_name}} WHERE the_geom IS NOT NULL ORDER BY quakedate ASC", {table_name: 'earthquaked3'})
-      .done(function(collection) {
-        earthquakes = collection.features;
+    var recent_upload= {};
+    $(document).ready(function(){
+      var url="http://52.53.177.54/getgeonumjson.php?num=20";
+      $.getJSON(url,function(data){
+        recent_upload["features"] = [];
+        $.each(data, function(i,geo){
+          var item = {};
+          item["geometry"] = {};
+          item["geometry"]["type"] = "Point";
+          item["geometry"]["coordinates"] = [Number(geo.longitude), Number(geo.lat)];
+          item["properties"] = {};
+          item["properties"]["uploadtime"] = geo.time;
+          recent_upload["features"][i] = item;
+        });
+        console.log(recent_upload);
+        earthquakes = recent_upload.features;
         quake();
       });
+    });
+
+    //52.53.177.54/getgeophjson.php
+    var testData = {};
+    $(document).ready(function(){
+      var url="http://52.53.177.54/getgeophjson.php";
+      $.getJSON(url,function(data){
+        testData["data"] = data
+        // geojson["features"] = [];
+        // $.each(data, function(i,geo){
+        //   var item = {};
+        //   item["geometry"] = {};
+        //   item["geometry"]["type"] = "Point";
+        //   item["geometry"]["coordinates"] = [Number(geo.longitude), Number(geo.lat)];
+        //   item["properties"] = {};
+        //   item["properties"]["uploadtime"] = geo.time;
+        //   geojson["features"][i] = item;
+        // });
+        // console.log(geojson);
+        // earthquakes = geojson.features;
+        // quake();
+        console.log(data);
+      });
+    });
+
  
     var i = 0;
     function quake() {
@@ -256,11 +324,13 @@
         .transition()
           .duration(4000)
           .ease(Math.sqrt)
-          .attr("r", c.properties.magnitude * 10)
+          .attr("r", 2 * 10) //c.properties.magnitude
           .style("fill-opacity", 1e-6)
           .style("stroke-opacity", 1e-6)
           .remove()
         setTimeout(quake, 200);
+      //console.log("c=", c.geometry.coordinates[0]);
+      //console.log("c=", c.geometry.coordinates[1]);
 
       ///console.log("c=", c.geometry.coordinates);
       //console.log("x=", projection(c.geometry.coordinates)[0]);
@@ -276,9 +346,28 @@
       if (earthquakes.length==i) i = 0;
     }
     // TODO click other place => remove pop up
+    // $("body").on('click', function(evt){
+    //       evt.stopPropagation();
+    //       $('#popup').remove();
+    //       $('#invisibleDiv').remove();
+    // });
+
+    // Remove popup when clicking outside
+    $(document).mouseup(function (e) {
+       var popup = $("#popup");
+       if (!$('#open').is(e.target) && !popup.is(e.target) && popup.has(e.target).length == 0) {
+           popup.remove();
+       }
+    });
+    
+    // document.getElementById('invisibleDiv').onclick = function()
+    // {
+    //     document.getElementById('popup').style.display = 'none'; 
+    // }
 
     function circle_clicked(evt){
         $('#popup').remove();
+        $('#invisibleDiv').remove();
 
         var pw = 400;
         var ph = 300;
@@ -287,6 +376,13 @@
         currY = evt.clientY - ph/2;
         //console.log(currX);
         //console.log(currY);
+        // var invisibleDiv = document.createElement("div");
+        // invisibleDiv.setAttribute("id", "invisibleDiv");
+        // invisibleDiv.style.height = "100vh";
+        // invisibleDiv.style.width = "100vw";
+        // document.body.appendChild(invisibleDiv);
+
+
 
         var div = document.createElement("div");
         div.setAttribute("id", "popup");
