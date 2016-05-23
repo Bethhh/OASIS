@@ -264,7 +264,7 @@
     var earthquakes;
     var recent_upload= {};
     $(document).ready(function(){
-      var url="http://52.53.177.54/getgeonumjson.php?num=20";
+      var url="https://52.53.177.54/getgeonumjson.php?num=20";
       $.getJSON(url,function(data){
         recent_upload["features"] = [];
         $.each(data, function(i,geo){
@@ -285,7 +285,7 @@
     //52.53.177.54/getgeophjson.php
     var testData = {};
     $(document).ready(function(){
-      var url="http://52.53.177.54/getgeophjson.php";
+      var url="https://52.53.177.54/getgeophjson.php";
       $.getJSON(url,function(data){
         testData["data"] = data
         // geojson["features"] = [];
